@@ -288,7 +288,7 @@ def _execute_natural_query_internal(query: str, df: pd.DataFrame) -> Dict[str, A
             pass
 
     # 6. Groupby Query: "Which category has the highest sales?" / "Sales by region" / "Which region is performing best?"
-    group_indicators = ["by", "highest", "lowest", "best", "worst", "performing", "distribution"]
+    group_indicators = ["by", "highest", "lowest", "best", "worst", "performing", "distribution", "compare", "breakdown", "across"]
     if any(k in q for k in group_indicators) and cat_cols:
         target_cat = match_column(q, cat_cols, preferred_type="categorical", df=df) or cat_cols[0]
         target_num = match_column(q, numeric_cols, preferred_type="numerical", df=df) or (numeric_cols[0] if numeric_cols else None)
@@ -399,6 +399,22 @@ def _execute_natural_query_internal(query: str, df: pd.DataFrame) -> Dict[str, A
                 "executed_intent": "top_n_ranking"
             }
 
+    # Row Count / Dataset Size Query
+    if any(k in q for k in ["how many rows", "how many records", "how many entries", "how many orders", "row count", "number of rows", "number of records", "dataset size", "total rows"]):
+        total_rows = len(df)
+        return {
+            "answer": f"The dataset contains **{total_rows:,}** total records across {len(columns)} columns.",
+            "response_type": "kpi",
+            "kpi": {
+                "label": "Total Dataset Rows",
+                "value": f"{total_rows:,}",
+                "subtitle": f"{len(columns)} columns tracked"
+            },
+            "table": None,
+            "chart": None,
+            "executed_intent": "dataset_row_count"
+        }
+
     # 8. Single Numerical Aggregation: Average, Sum, Min, Max, Count
     # "What is the average revenue?" / "Total profit" / "Maximum sales"
     agg_op = None
@@ -493,21 +509,24 @@ def _execute_natural_query_internal(query: str, df: pd.DataFrame) -> Dict[str, A
             "executed_intent": "numerical_filtering"
         }
 
-    # 10. Fallback General Descriptive Response
-    # Pick a sensible default summary
-    primary_num = numeric_cols[0] if numeric_cols else columns[0]
-    total_recs = len(df)
-    mean_val = float(df[primary_num].mean()) if primary_num in numeric_cols else 0.0
+    # 10. Fallback for Unmatched Queries (No fake calculation)
+    primary_num = numeric_cols[0] if numeric_cols else (columns[0] if columns else "metric")
+    primary_cat = cat_cols[0] if cat_cols else (columns[0] if columns else "category")
+    cols_preview = ", ".join(f"`{c}`" for c in columns[:6])
 
     return {
-        "answer": f"Analyzed your question against the dataset. Found {total_recs:,} records. For {primary_num}, the mean is {mean_val:,.2f}.",
-        "response_type": "kpi",
-        "kpi": {
-            "label": f"Average {primary_num}",
-            "value": f"{mean_val:,.2f}",
-            "subtitle": f"Across {total_recs:,} entries"
-        },
+        "answer": (
+            f"I couldn't find a matching calculation for: \"{query}\".\n\n"
+            f"This dataset has {len(df):,} records with columns: {cols_preview}.\n\n"
+            f"Try asking:\n"
+            f"- *\"What is the average {primary_num}?\"*\n"
+            f"- *\"Which {primary_cat} has the highest {primary_num}?\"*\n"
+            f"- *\"Show top 5 {primary_cat} by {primary_num}\"*\n"
+            f"- *\"Summarize this dataset\"*"
+        ),
+        "response_type": "text",
+        "kpi": None,
         "table": None,
         "chart": None,
-        "executed_intent": "general_overview"
+        "executed_intent": "unmatched"
     }

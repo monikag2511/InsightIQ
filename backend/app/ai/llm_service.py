@@ -53,14 +53,17 @@ async def ask_insightiq(query: str, df: pd.DataFrame) -> Dict[str, Any]:
     # Step 3: Enrich explanation via Groq LLM without altering computed numerical facts
     try:
         enriched_explanation, provider, model_used, error_msg = await call_groq_or_llm_for_explanation(
-            query, computed_result, groq_key, groq_model, gemini_key, openai_key
+            query, computed_result, df, groq_key, groq_model, gemini_key, openai_key
         )
         if enriched_explanation:
             computed_result["answer"] = enriched_explanation
             computed_result["mode"] = f"ai_{provider}"
             computed_result["provider"] = provider
             computed_result["model"] = model_used
-            computed_result["disclaimer"] = f"AI Explanation enriched via {provider.upper()} ({model_used}). Calculations 100% verified by Pandas."
+            if computed_result.get("executed_intent") == "unmatched":
+                computed_result["disclaimer"] = f"AI Data Assistant ({model_used})"
+            else:
+                computed_result["disclaimer"] = f"AI Explanation enriched via {provider.upper()} ({model_used}). Calculations 100% verified by Pandas."
         else:
             computed_result["mode"] = "builtin_engine"
             computed_result["provider"] = "builtin"
@@ -79,17 +82,63 @@ async def ask_insightiq(query: str, df: pd.DataFrame) -> Dict[str, Any]:
 async def call_groq_or_llm_for_explanation(
     user_question: str,
     computation_payload: Dict[str, Any],
+    df: pd.DataFrame,
     groq_key: str,
     groq_model: str,
     gemini_key: str,
     openai_key: str
 ) -> Tuple[Optional[str], str, str, Optional[str]]:
     """
-    Calls Groq API (or alternative LLMs) to formulate a polished business analyst explanation.
-    Guarantees that numbers are never invented or changed.
+    Calls Groq API (or alternative LLMs) to formulate an intelligent response.
+    - If a mathematical/Pandas intent was matched: formulates a verified business explanation without changing numbers.
+    - If the query is conversational/unmatched: guides the user smartly based on actual dataset columns without fake calculations.
     Returns: (explanation, provider, model, error_message)
     """
-    prompt = f"""User Question: "{user_question}"
+    is_unmatched = computation_payload.get("executed_intent") == "unmatched"
+    columns = list(df.columns)
+    numeric_cols = [c for c in columns if pd.api.types.is_numeric_dtype(df[c])]
+    cat_cols = [c for c in columns if c not in numeric_cols]
+
+    if is_unmatched:
+        sample_cols = ", ".join(columns[:6])
+        num_samples = []
+        for c in numeric_cols[:3]:
+            try:
+                m = float(df[c].mean())
+                num_samples.append(f"{c} (mean ~ {m:,.1f})")
+            except Exception:
+                pass
+        num_summary_str = ", ".join(num_samples) if num_samples else "None"
+
+        cat_samples = []
+        for c in cat_cols[:2]:
+            try:
+                top_vals = [str(v) for v in df[c].dropna().unique()[:3]]
+                cat_samples.append(f"{c} (values like {', '.join(top_vals)})")
+            except Exception:
+                pass
+        cat_summary_str = "; ".join(cat_samples) if cat_samples else "None"
+
+        prompt = f"""You are the senior AI Data Analyst for the 'Ask Your Data' analytics platform.
+The user uploaded a dataset with {len(df):,} records across {len(columns)} columns: {', '.join(columns)}.
+Numeric Metrics: {num_summary_str}
+Categorical Attributes: {cat_summary_str}
+
+User Question / Message: "{user_question}"
+
+INSTRUCTIONS:
+1. If the message is off-topic, greeting, slang, joke, or casual chat (e.g. "chapprii", "hello", "hi", "who are you", "what can you do"):
+   - Respond warmly, politely, and with a light touch of wit as their dedicated AI Data Analyst.
+   - Clarify clearly that this input does not correspond to any data metric or column in this dataset.
+   - Suggest 3 concrete, interesting analytical questions they can ask based on their actual columns ({sample_cols}).
+   - DO NOT fabricate fake numbers or random averages.
+
+2. If the user is asking an analytical, business, or conceptual question about this dataset:
+   - Provide an insightful, professional, executive-level response using the dataset context and domain knowledge.
+   - Guide them on which specific columns or aggregations to explore."""
+        system_content = "You are a professional, sharp, and helpful AI Data Analyst for 'Ask Your Data'. You understand user intent precisely and never provide fake or irrelevant calculations."
+    else:
+        prompt = f"""User Question: "{user_question}"
 
 The controlled data engine computed the following actual dataset facts:
 - Intent: {computation_payload.get('executed_intent')}
@@ -98,6 +147,11 @@ The controlled data engine computed the following actual dataset facts:
 
 Please formulate a clear, concise, and professional business explanation (2-3 sentences) summarizing this finding for executive stakeholders.
 CRITICAL CONSTRAINT: Do NOT change, round differently, or invent any numerical results. The numbers provided are final and ground truth."""
+        system_content = (
+            "You are a senior data analytics consultant for 'Ask Your Data'. "
+            "You explain calculated statistical facts with clarity and executive precision. "
+            "NEVER fabricate or contradict the numerical values provided."
+        )
 
     last_error: Optional[str] = None
 
@@ -127,19 +181,15 @@ CRITICAL CONSTRAINT: Do NOT change, round differently, or invent any numerical r
                     "messages": [
                         {
                             "role": "system",
-                            "content": (
-                                "You are a senior data analytics consultant for 'Ask Your Data'. "
-                                "You explain calculated statistical facts with clarity and executive precision. "
-                                "NEVER fabricate or contradict the numerical values provided."
-                            )
+                            "content": system_content
                         },
                         {
                             "role": "user",
                             "content": prompt
                         }
                     ],
-                    "temperature": 0.2,
-                    "max_tokens": 250
+                    "temperature": 0.3 if is_unmatched else 0.2,
+                    "max_tokens": 300
                 }
                 try:
                     res = await client.post(GROQ_API_URL, json=payload, headers=headers)
