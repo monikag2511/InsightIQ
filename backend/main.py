@@ -18,9 +18,11 @@ load_dotenv()
 from backend.app.database.session import Base, engine
 from backend.app.api.auth import router as auth_router
 from backend.app.api.datasets import router as datasets_router
+from backend.app.database.seeder import seed_initial_data
 
-# Initialize Database schema
+# Initialize Database schema and seed default dataset if empty
 Base.metadata.create_all(bind=engine)
+seed_initial_data()
 
 app = FastAPI(
     title="InsightIQ API",
