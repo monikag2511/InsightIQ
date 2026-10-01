@@ -213,3 +213,30 @@ def test_demo_datasets_multi_type():
     assert wf_data["name"] == "Enterprise Workforce & Compensation"
     assert wf_data["row_count"] > 100
 
+def test_ask_your_data_exact_suggested_questions():
+    res = client.post("/api/datasets/demo?type=retail")
+    assert res.status_code == 200
+    dataset_id = res.json()["id"]
+
+    questions = [
+        "What is the average revenue?",
+        "Which category has the highest sales?",
+        "Show the top 10 customers.",
+        "Which month had the highest sales?",
+        "What are the strongest correlations?",
+        "Are there any unusual values?",
+        "Summarize this dataset.",
+        "Show customers with revenue greater than 50000.",
+        "Which region performs best?",
+        "What percentage of sales comes from the top 10 products?"
+    ]
+
+    for q in questions:
+        q_res = client.post(f"/api/datasets/{dataset_id}/ask", json={"question": q})
+        assert q_res.status_code == 200, f"Query '{q}' failed with {q_res.status_code}"
+        data = q_res.json()
+        assert "answer" in data
+        assert len(data["answer"]) > 0
+        assert data["executed_intent"] is not None
+
+

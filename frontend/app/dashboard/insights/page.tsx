@@ -117,7 +117,7 @@ export default function InsightsPage() {
           <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
             <div className="flex items-center gap-2 text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
               <Sparkles className="h-4 w-4 text-blue-500" />
-              <span>InsightIQ Strategic Executive Summary</span>
+              <span>Ask Your Data Strategic Executive Summary</span>
             </div>
             <button
               onClick={() => {

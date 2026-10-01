@@ -202,7 +202,7 @@ def _execute_natural_query_internal(query: str, df: pd.DataFrame) -> Dict[str, A
             }
 
     # 4. Outliers Query
-    if any(k in q for k in ["outlier", "anomaly", "extreme value"]):
+    if any(k in q for k in ["outlier", "anomaly", "extreme value", "unusual", "abnormal", "strange", "bizarre"]):
         outlier_rows = []
         for c in numeric_cols:
             s = pd.to_numeric(df[c], errors='coerce').dropna()
@@ -225,7 +225,7 @@ def _execute_natural_query_internal(query: str, df: pd.DataFrame) -> Dict[str, A
         total_outliers = sum(x["Outlier Count"] for x in outlier_rows)
 
         return {
-            "answer": f"Outlier audit identified {total_outliers:,} potential anomalies across {len(outlier_rows)} numerical columns using IQR bounds.",
+            "answer": f"Outlier audit identified {total_outliers:,} potential unusual values / anomalies across {len(outlier_rows)} numerical columns using IQR bounds.",
             "response_type": "table",
             "kpi": {
                 "label": "Total Detected Outliers",
@@ -333,7 +333,7 @@ def _execute_natural_query_internal(query: str, df: pd.DataFrame) -> Dict[str, A
                 "executed_intent": "categorical_aggregation"
             }
 
-    # 7. Top-N Query: "Show me the top 10 customers" / "Top 5 products"
+    # 7. Top-N Query: "Show me the top 10 customers" / "Top 5 products" / "What percentage of sales comes from the top 10 products?"
     top_match = re.search(r'\b(top|bottom)\s+(\d+)\b', q)
     if top_match:
         direction = top_match.group(1)
@@ -348,23 +348,44 @@ def _execute_natural_query_internal(query: str, df: pd.DataFrame) -> Dict[str, A
             grouped.sort_values(by=target_num, ascending=is_ascending, inplace=True)
             top_records = grouped.head(n)
 
+            total_sum = float(df[target_num].sum())
+            top_n_sum = float(top_records[target_num].sum())
+            share_pct = round((top_n_sum / total_sum) * 100, 2) if total_sum > 0 else 0.0
+
             chart_data = [{"name": str(r[target_cat]), target_num: round(float(r[target_num]), 2)} for _, r in top_records.iterrows()]
 
             table_rows = [
-                {"Rank": idx + 1, target_cat: str(r[target_cat]), target_num: f"${r[target_num]:,.2f}"}
+                {
+                    "Rank": idx + 1,
+                    target_cat: str(r[target_cat]),
+                    target_num: f"${r[target_num]:,.2f}",
+                    "Share %": f"{round((float(r[target_num]) / total_sum) * 100, 2)}%" if total_sum > 0 else "0%"
+                }
                 for idx, (_, r) in enumerate(top_records.iterrows())
             ]
 
-            return {
-                "answer": f"Here are the {direction} {n} {target_cat} entities ranked by total {target_num}.",
-                "response_type": "mixed",
-                "kpi": {
+            is_pct_query = any(k in q for k in ["percent", "percentage", "%", "share", "portion", "proportion"])
+            if is_pct_query:
+                ans_text = f"The {direction} {n} {target_cat} account for **{share_pct}%** of all {target_num} (**${top_n_sum:,.2f}** out of total **${total_sum:,.2f}**)."
+                kpi_obj = {
+                    "label": f"{direction.capitalize()} {n} {target_cat} Share",
+                    "value": f"{share_pct}%",
+                    "subtitle": f"${top_n_sum:,.2f} of ${total_sum:,.2f} total {target_num}"
+                }
+            else:
+                ans_text = f"Here are the {direction} {n} {target_cat} entities ranked by total {target_num} (accounting for **{share_pct}%** of all {target_num})."
+                kpi_obj = {
                     "label": f"#1 {target_cat}",
                     "value": str(top_records.iloc[0][target_cat]),
-                    "subtitle": f"${top_records.iloc[0][target_num]:,.2f} {target_num}"
-                },
+                    "subtitle": f"${top_records.iloc[0][target_num]:,.2f} {target_num} ({share_pct}% from top {n})"
+                }
+
+            return {
+                "answer": ans_text,
+                "response_type": "mixed",
+                "kpi": kpi_obj,
                 "table": {
-                    "columns": ["Rank", target_cat, target_num],
+                    "columns": ["Rank", target_cat, target_num, "Share %"],
                     "rows": table_rows,
                     "total_records": len(table_rows)
                 },
@@ -447,10 +468,16 @@ def _execute_natural_query_internal(query: str, df: pd.DataFrame) -> Dict[str, A
         if target_num not in display_cols:
             display_cols.append(target_num)
 
-        preview_rows = filtered[display_cols].head(15).to_dict(orient="records")
+        preview_rows = filtered[display_cols].head(15).to_dict(orient="records") if cnt > 0 else []
+
+        if cnt == 0:
+            max_val = float(df[target_num].max()) if len(df) > 0 else 0.0
+            ans_text = f"Found **0** records where **{target_num}** is {comp_str}. The peak {target_num} in this dataset is **${max_val:,.2f}**."
+        else:
+            ans_text = f"Found **{cnt:,}** records ({pct}% of dataset) where **{target_num}** is {comp_str}."
 
         return {
-            "answer": f"Found **{cnt:,}** records ({pct}% of dataset) where **{target_num}** is {comp_str}.",
+            "answer": ans_text,
             "response_type": "mixed",
             "kpi": {
                 "label": f"Filtered Records ({target_num} {comp_str})",

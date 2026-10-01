@@ -130,7 +130,7 @@ export default function DashboardOverviewPage() {
             className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-700 transition"
           >
             <MessageSquareCode className="h-3.5 w-3.5" />
-            <span>Ask InsightIQ</span>
+            <span>Ask Your Data</span>
           </Link>
         </div>
       </div>

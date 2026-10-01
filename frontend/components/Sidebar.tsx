@@ -24,7 +24,7 @@ const navItems = [
   { name: 'Data Quality', href: '/dashboard/quality', icon: ShieldCheck, badge: 'Audit' },
   { name: 'Analytics', href: '/dashboard/analytics', icon: TrendingUp },
   { name: 'Visualizations', href: '/dashboard/visualizations', icon: BarChart2 },
-  { name: 'Ask InsightIQ', href: '/dashboard/ask', icon: MessageSquareCode, highlight: true },
+  { name: 'Ask Your Data', href: '/dashboard/ask', icon: MessageSquareCode, highlight: true },
   { name: 'Insights', href: '/dashboard/insights', icon: Sparkles },
   { name: 'Reports', href: '/dashboard/reports', icon: FileSpreadsheet },
   { name: 'Settings', href: '/dashboard/settings', icon: Settings },
@@ -105,7 +105,7 @@ export default function Sidebar() {
         <div className="rounded-xl bg-gradient-to-br from-slate-900 to-slate-800 p-3 text-white dark:from-slate-800 dark:to-slate-900 border border-slate-700/50">
           <div className="flex items-center gap-1.5 text-xs font-semibold">
             <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
-            <span>InsightIQ Natural Engine</span>
+            <span>Ask Your Data Engine</span>
           </div>
           <p className="mt-1 text-[11px] text-slate-300 leading-relaxed">
             Deterministic Pandas calculations paired with intent reasoning.

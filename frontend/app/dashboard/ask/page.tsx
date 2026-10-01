@@ -25,13 +25,14 @@ import UniversalChart from '@/components/Charts/UniversalChart';
 const SUGGESTED_QUESTIONS = [
   'What is the average revenue?',
   'Which category has the highest sales?',
-  'Show me the top 10 customers.',
+  'Show the top 10 customers.',
   'Which month had the highest sales?',
-  'Which region is performing best?',
   'What are the strongest correlations?',
-  'Are there any outliers?',
+  'Are there any unusual values?',
   'Summarize this dataset.',
-  'Show customers with revenue above 50000.',
+  'Show customers with revenue greater than 50000.',
+  'Which region performs best?',
+  'What percentage of sales comes from the top 10 products?'
 ];
 
 interface ChatMessage {
@@ -44,7 +45,7 @@ interface ChatMessage {
   created_at?: string;
 }
 
-export default function AskInsightIQPage() {
+export default function AskYourDataPage() {
   const { currentDataset } = useDataset();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputText, setInputText] = useState('');
@@ -251,7 +252,7 @@ export default function AskInsightIQPage() {
           <div>
             <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-blue-500" />
-              <span>Ask InsightIQ</span>
+              <span>Ask Your Data</span>
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
               Ask questions. Get answers from your data.
@@ -277,7 +278,7 @@ export default function AskInsightIQPage() {
                 What would you like to uncover?
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 mb-6">
-                InsightIQ calculates exact ground truth numbers from your dataset using safe, deterministic analysis.
+                Calculates exact ground truth numbers from your dataset using safe, deterministic analysis.
               </p>
 
               {/* Suggested Questions Chips */}
@@ -324,7 +325,7 @@ export default function AskInsightIQPage() {
                       <span>
                         {msg.mode === 'ai_llm'
                           ? 'AI Mode active'
-                          : 'InsightIQ built-in analysis engine'}
+                          : 'Ask Your Data built-in analysis engine'}
                       </span>
                     </div>
                   )}
@@ -428,7 +429,7 @@ export default function AskInsightIQPage() {
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              placeholder="Ask anything about your dataset..."
+              placeholder="Ask anything about your data…"
               className="flex-1 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2.5 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-blue-500"
             />
             <button

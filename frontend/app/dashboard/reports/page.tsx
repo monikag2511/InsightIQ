@@ -21,7 +21,7 @@ export default function ReportsPage() {
   const { currentDataset } = useDataset();
   const [generating, setGenerating] = useState(false);
   const [generatedReport, setGeneratedReport] = useState<ReportItem | null>(null);
-  const [reportTitle, setReportTitle] = useState('InsightIQ Executive Analytics Report');
+  const [reportTitle, setReportTitle] = useState('Ask Your Data Executive Analytics Report');
 
   const handleGeneratePDF = async () => {
     if (!currentDataset) return;
@@ -72,7 +72,7 @@ export default function ReportsPage() {
           </div>
 
           <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            The InsightIQ Report Engine compiles an exhaustive executive brief containing 8 essential sections:
+            The Ask Your Data Report Engine compiles an exhaustive executive brief containing 8 essential sections:
           </p>
 
           {/* Report Contents List */}

@@ -54,13 +54,13 @@ export default function Navbar() {
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">InsightIQ</span>
+              <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Ask Your Data</span>
               <span className="rounded-md bg-blue-100 dark:bg-blue-900/40 px-1.5 py-0.5 text-[10px] font-semibold text-blue-700 dark:text-blue-300">
-                PRO
+                AI
               </span>
             </div>
             <p className="hidden md:block text-[11px] font-medium text-slate-500 dark:text-slate-400">
-              Turn Data Into Decisions
+              Upload. Ask. Discover.
             </p>
           </div>
         </Link>

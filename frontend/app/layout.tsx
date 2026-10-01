@@ -4,8 +4,8 @@ import { DatasetProvider } from '@/context/DatasetContext';
 import UploadModal from '@/components/UploadModal';
 
 export const metadata: Metadata = {
-  title: 'InsightIQ | AI-Powered Natural Language Data Analytics & Insight Platform',
-  description: 'Turn Data Into Decisions. Upload your dataset, explore powerful analytics, and ask questions in natural language to uncover meaningful insights.',
+  title: 'Ask Your Data | AI-Powered Personal Data Analysis Platform',
+  description: 'Upload your data. Ask questions. Discover insights. Automated profiling, cleaning, EDA, visualizations, and natural-language dataset intelligence.',
   icons: {
     icon: '/favicon.ico',
   },

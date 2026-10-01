@@ -37,7 +37,7 @@ export default function RegisterPage() {
             <div className="h-10 w-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/25">
               <BarChart3 className="h-6 w-6" />
             </div>
-            <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">InsightIQ</span>
+            <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Ask Your Data</span>
           </Link>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white">Create Your Account</h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Get started with AI-driven dataset intelligence</p>

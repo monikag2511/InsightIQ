@@ -92,7 +92,7 @@ def generate_pdf_report(
     story = []
 
     # Header / Title Banner
-    story.append(Paragraph("<b>InsightIQ</b> Executive Analytics Report", title_style))
+    story.append(Paragraph("<b>Ask Your Data</b> Executive Analytics Report", title_style))
     story.append(Paragraph(f"Dataset: <b>{dataset_name}</b> | Generated on {datetime.datetime.now().strftime('%B %d, %Y %H:%M')}", subtitle_style))
     story.append(HRFlowable(width="100%", thickness=2, color=brand_blue, spaceBefore=4, spaceAfter=14))
 
@@ -193,7 +193,7 @@ def generate_pdf_report(
 
     # Footer note
     story.append(HRFlowable(width="100%", thickness=1, color=brand_border, spaceBefore=10, spaceAfter=6))
-    story.append(Paragraph("InsightIQ Platform | Autonomous Natural Language Tabular Intelligence | Confidential Report", meta_style))
+    story.append(Paragraph("Ask Your Data Platform | AI-Powered Data Analysis & Insights | Confidential Report", meta_style))
 
     doc.build(story)
     return output_pdf_path
