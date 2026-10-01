@@ -89,8 +89,8 @@ export const api = {
     return response.json();
   },
 
-  async loadDemoDataset() {
-    return request<any>('/api/datasets/demo', { method: 'POST' });
+  async loadDemoDataset(type = 'retail') {
+    return request<any>(`/api/datasets/demo?type=${encodeURIComponent(type)}`, { method: 'POST' });
   },
 
   async listDatasets() {

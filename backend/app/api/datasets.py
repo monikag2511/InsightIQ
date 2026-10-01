@@ -123,27 +123,50 @@ async def upload_dataset(
 
 @router.post("/demo", response_model=DatasetResponse)
 def load_demo_dataset_endpoint(
+    type: str = Query("retail", description="Demo dataset type: 'retail', 'saas', or 'workforce'"),
     db: Session = Depends(get_db),
     current_user: Optional[User] = Depends(get_optional_current_user)
 ):
     demo_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../data/demo"))
-    demo_file = os.path.join(demo_dir, "retail_sales_demo.csv")
     
-    if not os.path.exists(demo_file):
+    demo_configs = {
+        "retail": {
+            "filename": "retail_sales_demo.csv",
+            "name": "Global Retail Sales Demo",
+            "ext": "csv"
+        },
+        "saas": {
+            "filename": "saas_subscriptions_demo.csv",
+            "name": "B2B SaaS Subscriptions & Churn",
+            "ext": "csv"
+        },
+        "workforce": {
+            "filename": "employee_workforce_demo.csv",
+            "name": "Enterprise Workforce & Compensation",
+            "ext": "csv"
+        }
+    }
+    
+    config = demo_configs.get(type.lower(), demo_configs["retail"])
+    demo_file = os.path.join(demo_dir, config["filename"])
+    
+    if not os.path.exists(demo_file) and config["filename"] == "retail_sales_demo.csv":
         generate_demo_dataset(1200, demo_file)
+    elif not os.path.exists(demo_file):
+        raise HTTPException(status_code=404, detail=f"Demo file '{config['filename']}' not found on server.")
 
     # Copy demo dataset to uploads
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    copy_path = os.path.join(UPLOAD_DIR, f"{timestamp}_retail_sales_demo.csv")
+    copy_path = os.path.join(UPLOAD_DIR, f"{timestamp}_{config['filename']}")
     shutil.copyfile(demo_file, copy_path)
 
-    df = load_dataset(copy_path, "csv")
+    df = load_dataset(copy_path, config["ext"])
 
     ds_record = Dataset(
         user_id=current_user.id if current_user else None,
-        name="Global Retail Sales Demo",
-        file_name="retail_sales_demo.csv",
-        file_type="csv",
+        name=config["name"],
+        file_name=config["filename"],
+        file_type=config["ext"],
         row_count=len(df),
         column_count=len(df.columns),
         file_path=copy_path

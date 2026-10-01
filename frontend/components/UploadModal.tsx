@@ -102,11 +102,11 @@ export default function UploadModal() {
     }
   };
 
-  const handleTryDemo = async () => {
+  const handleTryDemo = async (type: string = 'retail') => {
     setUploading(true);
     setErrorMsg(null);
     try {
-      await loadDemoDataset();
+      await loadDemoDataset(type);
       setUploading(false);
       setUploadModalOpen(false);
     } catch (err: any) {
@@ -219,42 +219,68 @@ export default function UploadModal() {
           </div>
         )}
 
-        {/* Actions */}
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <button
-            type="button"
-            onClick={handleTryDemo}
-            disabled={uploading}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2.5 text-xs font-medium text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 transition"
-          >
-            <Sparkles className="h-3.5 w-3.5 text-blue-500" />
-            Try Demo Dataset
-          </button>
-
-          <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+        {/* Instant Pre-Loaded Sample Data */}
+        <div className="mt-4 rounded-xl border border-slate-200/80 p-3.5 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/60">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <Sparkles className="h-3.5 w-3.5 text-blue-500" /> Or Explore Instant Demo Datasets
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <button
               type="button"
-              onClick={() => setUploadModalOpen(false)}
+              onClick={() => handleTryDemo('retail')}
               disabled={uploading}
-              className="rounded-xl px-4 py-2.5 text-xs font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition"
+              className="flex flex-col items-start p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/80 hover:border-blue-500 dark:hover:border-blue-500 hover:bg-blue-50/40 dark:hover:bg-blue-950/20 text-left transition group shadow-2xs"
             >
-              Cancel
+              <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400">Retail Sales</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400">1,200 rows • Sales & Profit</span>
             </button>
             <button
               type="button"
-              onClick={handleUploadSubmit}
-              disabled={!selectedFile || uploading}
-              className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-700 disabled:opacity-50 transition"
+              onClick={() => handleTryDemo('saas')}
+              disabled={uploading}
+              className="flex flex-col items-start p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/80 hover:border-blue-500 dark:hover:border-blue-500 hover:bg-blue-50/40 dark:hover:bg-blue-950/20 text-left transition group shadow-2xs"
             >
-              {uploading ? (
-                <>
-                  <Loader2 className="h-3.5 w-3.5 animate-spin" /> Uploading...
-                </>
-              ) : (
-                'Upload & Profile'
-              )}
+              <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400">SaaS Churn</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400">500 rows • MRR & Tiers</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleTryDemo('workforce')}
+              disabled={uploading}
+              className="flex flex-col items-start p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/80 hover:border-blue-500 dark:hover:border-blue-500 hover:bg-blue-50/40 dark:hover:bg-blue-950/20 text-left transition group shadow-2xs"
+            >
+              <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400">HR Workforce</span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400">350 rows • Salary & Rating</span>
             </button>
           </div>
+        </div>
+
+        {/* Actions */}
+        <div className="mt-5 flex items-center justify-end gap-2.5">
+          <button
+            type="button"
+            onClick={() => setUploadModalOpen(false)}
+            disabled={uploading}
+            className="rounded-xl px-4 py-2.5 text-xs font-medium text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={handleUploadSubmit}
+            disabled={!selectedFile || uploading}
+            className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-blue-600 px-5 py-2.5 text-xs font-semibold text-white shadow-md shadow-blue-500/20 hover:bg-blue-700 disabled:opacity-50 transition"
+          >
+            {uploading ? (
+              <>
+                <Loader2 className="h-3.5 w-3.5 animate-spin" /> Uploading...
+              </>
+            ) : (
+              'Upload & Profile'
+            )}
+          </button>
         </div>
       </div>
     </div>

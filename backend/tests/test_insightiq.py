@@ -197,3 +197,19 @@ def test_profiler_and_outliers():
     outliers = detect_outliers_iqr(s)
     assert outliers["outlier_count"] == 1
     assert outliers["upper_bound"] < 100
+
+def test_demo_datasets_multi_type():
+    # SaaS demo dataset
+    saas_res = client.post("/api/datasets/demo?type=saas")
+    assert saas_res.status_code == 200
+    saas_data = saas_res.json()
+    assert saas_data["name"] == "B2B SaaS Subscriptions & Churn"
+    assert saas_data["row_count"] > 100
+
+    # Workforce demo dataset
+    wf_res = client.post("/api/datasets/demo?type=workforce")
+    assert wf_res.status_code == 200
+    wf_data = wf_res.json()
+    assert wf_data["name"] == "Enterprise Workforce & Compensation"
+    assert wf_data["row_count"] > 100
+

@@ -12,7 +12,7 @@ interface DatasetContextType {
   setCurrentDataset: (ds: Dataset | null) => void;
   selectDataset: (id: number) => Promise<void>;
   refreshDatasets: () => Promise<Dataset[]>;
-  loadDemoDataset: () => Promise<Dataset>;
+  loadDemoDataset: (type?: string) => Promise<Dataset>;
   uploadModalOpen: boolean;
   setUploadModalOpen: (open: boolean) => void;
   mobileMenuOpen: boolean;
@@ -97,10 +97,10 @@ export function DatasetProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const loadDemoDataset = async () => {
+  const loadDemoDataset = async (type: string = 'retail') => {
     setLoading(true);
     try {
-      const ds = await api.loadDemoDataset();
+      const ds = await api.loadDemoDataset(type);
       await refreshDatasets();
       setCurrentDataset(ds);
       return ds;
