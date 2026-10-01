@@ -16,4 +16,4 @@ services:
       - key: GROQ_MODEL
         value: openai/gpt-oss-120b
       - key: DATABASE_URL
-        value: sqlite:///./insightiq.db
+        sync: false # Paste your Neon PostgreSQL connection string here

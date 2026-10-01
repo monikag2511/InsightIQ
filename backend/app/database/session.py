@@ -4,19 +4,23 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./insightiq.db")
 
-# Render and older Heroku Postgres URLs use postgres:// which SQLAlchemy 2.0 rejects
+# Neon / Render / Heroku Postgres dialect fix: SQLAlchemy requires postgresql://
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
-connect_args = {}
-if DATABASE_URL.startswith("sqlite"):
-    connect_args = {"check_same_thread": False}
+engine_kwargs = {
+    "pool_pre_ping": True, # Crucial for Neon: detects if serverless compute scaled to zero and reconnects
+}
 
-engine = create_engine(
-    DATABASE_URL,
-    connect_args=connect_args,
-    pool_pre_ping=True
-)
+if DATABASE_URL.startswith("sqlite"):
+    engine_kwargs["connect_args"] = {"check_same_thread": False}
+else:
+    # Serverless Postgres (Neon Tech) connection pool optimizations
+    engine_kwargs["pool_recycle"] = 300 # Recycle idle connections every 5 min
+    engine_kwargs["pool_size"] = 10
+    engine_kwargs["max_overflow"] = 20
+
+engine = create_engine(DATABASE_URL, **engine_kwargs)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

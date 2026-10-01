@@ -42,10 +42,14 @@ This guide walks you through deploying the full-stack application:
    | `SECRET_KEY` | `askyourdata-super-secret-production-jwt-key-2026` |
    | `GROQ_API_KEY` | *(Your Groq API key from .env)* |
    | `GROQ_MODEL` | `openai/gpt-oss-120b` |
-   | `DATABASE_URL` | `sqlite:///./insightiq.db` *(or your Render Postgres URL)* |
+   | `DATABASE_URL` | *(Your Neon Tech Connection String, e.g. `postgresql://user:pass@ep-xyz-pooler.neon.tech/neondb?sslmode=require`)* |
+
+> [!TIP]
+> **Neon Tech Tip**: In your [Neon Console](https://console.neon.tech), copy the **Pooled connection** string (ending with `-pooler.neon.tech/neondb?sslmode=require`). It is optimized for serverless applications and FastAPI concurrency!
 
 5. Click **Create Web Service**.
-6. Wait 2-3 minutes for the build to finish. Once live, copy your backend URL:
+6. Wait 2-3 minutes for the build to finish. The backend will automatically create all tables (`users`, `datasets`, `conversations`, etc.) on Neon!
+7. Once live, copy your backend URL:
    `https://insightiq-backend.onrender.com`
 
 ---
