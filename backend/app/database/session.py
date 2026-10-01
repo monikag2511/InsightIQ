@@ -4,9 +4,11 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./insightiq.db")
 
-# Neon / Render / Heroku Postgres dialect fix: SQLAlchemy requires postgresql://
+# Neon / Render / Heroku Postgres dialect fix: Ensure SQLAlchemy uses psycopg2
 if DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+psycopg2://", 1)
+elif DATABASE_URL.startswith("postgresql://") and not DATABASE_URL.startswith("postgresql+"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+psycopg2://", 1)
 
 engine_kwargs = {
     "pool_pre_ping": True, # Crucial for Neon: detects if serverless compute scaled to zero and reconnects
