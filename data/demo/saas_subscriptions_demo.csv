@@ -1,0 +1,801 @@
+Account_ID,Company_Name,Industry,Country,Plan,Seats,Monthly_Recurring_Revenue,Usage_Hours,NPS_Score,Churn_Status
+ACC-0001,Client 1,Marketing,Australia,Professional,11,250.14,469.9,89.0,Active
+ACC-0002,Client 2,Edtech,United States,Starter,2,67.42,71.5,82.0,Active
+ACC-0003,Client 3,E-commerce,United Kingdom,Starter,2,64.6,52.0,88.0,Active
+ACC-0004,Client 4,Fintech,Singapore,Professional,17,291.25,474.4,28.0,Active
+ACC-0005,Client 5,Edtech,United States,Business,67,987.27,1798.2,54.0,Active
+ACC-0006,Client 6,Fintech,Germany,Starter,4,79.64,86.0,79.0,Active
+ACC-0007,Client 7,E-commerce,United States,Professional,5,189.48,222.8,39.0,Active
+ACC-0008,Client 8,Healthcare,Canada,Professional,17,298.84,712.2,66.0,Active
+ACC-0009,Client 9,Fintech,United States,Business,90,1135.13,3215.9,43.0,Active
+ACC-0010,Client 10,Marketing,Australia,Starter,5,90.19,200.8,76.0,Active
+ACC-0011,Client 11,Healthcare,Singapore,Professional,19,319.94,675.9,37.0,Active
+ACC-0012,Client 12,E-commerce,Germany,Business,95,1197.86,1656.5,37.0,Active
+ACC-0013,Client 13,Marketing,Germany,Starter,1,57.58,28.9,64.0,Active
+ACC-0014,Client 14,E-commerce,United Kingdom,Starter,2,65.15,55.5,46.0,Active
+ACC-0015,Client 15,Logistics,United States,Starter,2,64.34,81.4,70.0,Active
+ACC-0016,Client 16,Logistics,Germany,Business,55,893.69,1914.7,80.0,Active
+ACC-0017,Client 17,Fintech,Singapore,Starter,2,65.28,83.6,66.0,Active
+ACC-0018,Client 18,Fintech,Canada,Starter,1,57.02,19.4,35.0,Active
+ACC-0019,Client 19,Healthcare,United Kingdom,Business,50,839.02,1519.7,66.0,Active
+ACC-0020,Client 20,Edtech,United Kingdom,Professional,22,329.21,815.0,58.0,Active
+ACC-0021,Client 21,Marketing,Canada,Professional,14,273.98,230.8,51.0,Active
+ACC-0022,Client 22,Edtech,Australia,Starter,1,57.11,43.5,46.0,Active
+ACC-0023,Client 23,Healthcare,Canada,Business,32,644.52,1120.6,77.0,Active
+ACC-0024,Client 24,Fintech,Australia,Professional,25,342.87,828.3,54.0,Active
+ACC-0025,Client 25,Edtech,United States,Professional,15,277.02,291.1,29.0,Active
+ACC-0026,Client 26,Healthcare,Singapore,Starter,2,65.51,35.8,88.0,Active
+ACC-0027,Client 27,Healthcare,Australia,Starter,5,93.9,142.3,44.0,Churned
+ACC-0028,Client 28,E-commerce,Australia,Business,90,1222.18,2950.2,33.0,Active
+ACC-0029,Client 29,Edtech,Australia,Business,98,1258.62,1792.5,36.0,Active
+ACC-0030,Client 30,Fintech,United States,Professional,24,357.18,650.1,55.0,Active
+ACC-0031,Client 31,Marketing,Canada,Starter,5,87.78,119.6,32.0,Active
+ACC-0032,Client 32,Edtech,United Kingdom,Professional,17,283.43,610.5,62.0,Active
+ACC-0033,Client 33,Healthcare,Germany,Professional,11,240.78,219.2,96.0,Active
+ACC-0034,Client 34,Fintech,Canada,Professional,11,239.31,238.9,24.0,Active
+ACC-0035,Client 35,Edtech,Australia,Starter,5,94.24,130.4,98.0,Active
+ACC-0036,Client 36,Healthcare,Singapore,Business,58,926.49,1658.7,27.0,Active
+ACC-0037,Client 37,E-commerce,United States,Starter,4,85.41,162.3,25.0,Active
+ACC-0038,Client 38,Healthcare,Canada,Starter,4,80.45,160.2,70.0,Active
+ACC-0039,Client 39,Edtech,United Kingdom,Professional,19,303.06,675.1,47.0,Active
+ACC-0040,Client 40,Logistics,United States,Professional,21,333.34,894.4,58.0,Active
+ACC-0041,Client 41,Edtech,Singapore,Starter,1,57.86,37.6,21.0,Active
+ACC-0042,Client 42,Edtech,Singapore,Starter,3,72.65,66.8,81.0,Active
+ACC-0043,Client 43,Marketing,Canada,Starter,1,57.71,17.9,81.0,Active
+ACC-0044,Client 44,Healthcare,Singapore,Starter,3,76.18,113.6,41.0,Active
+ACC-0045,Client 45,Marketing,Australia,Professional,18,309.34,762.3,42.0,Churned
+ACC-0046,Client 46,E-commerce,Australia,Starter,2,65.17,61.7,40.0,Active
+ACC-0047,Client 47,Healthcare,Canada,Professional,12,252.07,249.5,31.0,Churned
+ACC-0048,Client 48,Edtech,Canada,Starter,2,65.94,41.0,59.0,Active
+ACC-0049,Client 49,Fintech,United States,Professional,6,196.65,192.5,29.0,Active
+ACC-0050,Client 50,Marketing,Canada,Enterprise,119,2240.6,5122.8,49.0,Active
+ACC-0051,Client 51,Marketing,Canada,Starter,2,65.39,50.1,94.0,Active
+ACC-0052,Client 52,Healthcare,Singapore,Starter,5,89.81,152.5,56.0,Active
+ACC-0053,Client 53,Healthcare,Germany,Business,26,614.59,729.9,87.0,Active
+ACC-0054,Client 54,Marketing,Canada,Starter,4,85.89,75.0,46.0,Churned
+ACC-0055,Client 55,Edtech,United States,Business,26,611.3,490.2,99.0,Active
+ACC-0056,Client 56,Marketing,Germany,Business,70,1007.66,1480.3,42.0,Active
+ACC-0057,Client 57,Healthcare,Singapore,Professional,10,240.98,259.5,69.0,Active
+ACC-0058,Client 58,Fintech,Canada,Business,92,1178.51,2018.3,39.0,Active
+ACC-0059,Client 59,Edtech,Singapore,Professional,25,368.66,1034.3,59.0,Active
+ACC-0060,Client 60,E-commerce,Germany,Starter,1,57.83,29.6,64.0,Active
+ACC-0061,Client 61,Healthcare,United Kingdom,Professional,7,203.24,184.3,79.0,Active
+ACC-0062,Client 62,Logistics,United States,Business,50,858.42,1524.8,37.0,Active
+ACC-0063,Client 63,Edtech,Singapore,Business,43,754.02,680.9,98.0,Active
+ACC-0064,Client 64,Logistics,Australia,Starter,3,73.85,112.2,63.0,Active
+ACC-0065,Client 65,Healthcare,United Kingdom,Professional,12,249.66,188.5,27.0,Active
+ACC-0066,Client 66,Healthcare,Germany,Professional,10,226.77,174.4,59.0,Active
+ACC-0067,Client 67,Logistics,Canada,Starter,2,65.12,61.7,24.0,Active
+ACC-0068,Client 68,Marketing,Germany,Starter,3,75.82,119.2,71.0,Active
+ACC-0069,Client 69,Marketing,United States,Professional,7,209.4,169.5,53.0,Active
+ACC-0070,Client 70,Healthcare,Australia,Starter,2,64.37,39.6,82.0,Active
+ACC-0071,Client 71,E-commerce,Germany,Professional,11,247.16,190.0,79.0,Active
+ACC-0072,Client 72,Marketing,Germany,Business,45,749.82,1603.0,45.0,Active
+ACC-0073,Client 73,Fintech,Singapore,Starter,2,65.49,74.0,97.0,Churned
+ACC-0074,Client 74,Healthcare,Canada,Starter,5,93.39,207.5,25.0,Active
+ACC-0075,Client 75,Logistics,Germany,Starter,4,80.63,105.6,42.0,Active
+ACC-0076,Client 76,Marketing,Canada,Business,35,712.28,554.7,85.0,Active
+ACC-0077,Client 77,Marketing,United States,Professional,10,236.99,307.8,52.0,Active
+ACC-0078,Client 78,Marketing,Singapore,Starter,4,80.84,144.4,45.0,Churned
+ACC-0079,Client 79,Fintech,United States,Professional,5,188.35,125.0,46.0,Active
+ACC-0080,Client 80,Fintech,Singapore,Professional,24,363.33,715.9,51.0,Active
+ACC-0081,Client 81,Edtech,United Kingdom,Business,33,665.04,671.4,57.0,Active
+ACC-0082,Client 82,Healthcare,Singapore,Business,34,705.28,633.1,24.0,Active
+ACC-0083,Client 83,Fintech,Singapore,Professional,24,364.76,816.9,56.0,Active
+ACC-0084,Client 84,Fintech,Canada,Starter,5,88.19,171.3,75.0,Active
+ACC-0085,Client 85,Healthcare,Germany,Starter,2,66.74,64.7,76.0,Active
+ACC-0086,Client 86,Fintech,Australia,Professional,10,236.15,433.7,74.0,Active
+ACC-0087,Client 87,Logistics,Australia,Professional,12,244.79,245.7,24.0,Active
+ACC-0088,Client 88,Edtech,Germany,Starter,4,86.2,93.2,65.0,Active
+ACC-0089,Client 89,Edtech,Australia,Starter,3,76.7,61.2,87.0,Active
+ACC-0090,Client 90,E-commerce,Germany,Professional,23,344.56,1034.1,42.0,Active
+ACC-0091,Client 91,Marketing,United States,Starter,5,87.56,213.8,66.0,Active
+ACC-0092,Client 92,Edtech,Australia,Starter,2,65.87,38.3,,Active
+ACC-0093,Client 93,Marketing,United Kingdom,Professional,14,278.53,440.9,28.0,Active
+ACC-0094,Client 94,E-commerce,Germany,Professional,5,188.79,86.9,83.0,Active
+ACC-0095,Client 95,Edtech,United Kingdom,Professional,20,304.29,770.0,82.0,Active
+ACC-0096,Client 96,Marketing,Australia,Starter,3,74.73,102.5,72.0,Active
+ACC-0097,Client 97,E-commerce,Canada,Professional,10,232.48,352.1,82.0,Active
+ACC-0098,Client 98,E-commerce,Singapore,Professional,8,210.56,234.9,75.0,Active
+ACC-0099,Client 99,Marketing,Australia,Enterprise,396,4657.47,15226.3,42.0,Active
+ACC-0100,Client 100,Logistics,Australia,Professional,14,259.7,444.8,91.0,Active
+ACC-0101,Client 101,Logistics,United States,Starter,4,86.25,166.3,59.0,Active
+ACC-0102,Client 102,Edtech,Germany,Professional,12,248.44,443.7,99.0,Active
+ACC-0103,Client 103,Edtech,United States,Business,59,882.52,2142.4,67.0,Active
+ACC-0104,Client 104,Logistics,Australia,Professional,22,338.52,609.2,39.0,Active
+ACC-0105,Client 105,Marketing,Singapore,Professional,20,312.84,898.9,85.0,Active
+ACC-0106,Client 106,Healthcare,Canada,Professional,7,213.57,106.3,34.0,Active
+ACC-0107,Client 107,Edtech,Germany,Starter,2,64.5,33.5,48.0,Active
+ACC-0108,Client 108,Healthcare,Australia,Business,57,920.7,979.9,76.0,Active
+ACC-0109,Client 109,Marketing,United Kingdom,Professional,6,199.94,240.8,28.0,Active
+ACC-0110,Client 110,Logistics,Germany,Professional,6,202.54,120.6,98.0,Active
+ACC-0111,Client 111,Fintech,Canada,Professional,11,248.81,303.5,57.0,Active
+ACC-0112,Client 112,E-commerce,Germany,Starter,4,86.05,78.0,100.0,Active
+ACC-0113,Client 113,E-commerce,Germany,Business,63,939.79,2162.6,41.0,Active
+ACC-0114,Client 114,Logistics,Canada,Starter,4,83.11,132.3,84.0,Active
+ACC-0115,Client 115,E-commerce,Singapore,Starter,1,57.35,28.4,29.0,Churned
+ACC-0116,Client 116,Logistics,Germany,Starter,4,86.13,63.2,55.0,Active
+ACC-0117,Client 117,Logistics,United States,Starter,4,83.65,176.1,93.0,Active
+ACC-0118,Client 118,Healthcare,United States,Business,89,1133.53,3092.2,44.0,Active
+ACC-0119,Client 119,Healthcare,Germany,Starter,1,57.5,25.9,61.0,Active
+ACC-0120,Client 120,Marketing,United States,Professional,9,221.21,246.6,43.0,Churned
+ACC-0121,Client 121,Logistics,Australia,Business,27,644.81,1012.4,65.0,Active
+ACC-0122,Client 122,Marketing,Singapore,Professional,19,300.92,807.4,78.0,Active
+ACC-0123,Client 123,E-commerce,United States,Starter,5,88.72,213.4,66.0,Active
+ACC-0124,Client 124,Fintech,Singapore,Starter,3,76.07,54.4,95.0,Active
+ACC-0125,Client 125,Edtech,Singapore,Enterprise,480,5558.68,19562.9,37.0,Active
+ACC-0126,Client 126,Logistics,United States,Starter,1,58.31,25.5,35.0,Active
+ACC-0127,Client 127,Healthcare,United States,Starter,5,93.31,185.7,63.0,Active
+ACC-0128,Client 128,Marketing,United States,Professional,21,334.76,767.7,85.0,Active
+ACC-0129,Client 129,Marketing,United States,Enterprise,424,5115.67,10021.2,51.0,Active
+ACC-0130,Client 130,E-commerce,United Kingdom,Professional,12,254.79,325.5,98.0,Churned
+ACC-0131,Client 131,Logistics,United States,Starter,1,57.58,15.4,77.0,Active
+ACC-0132,Client 132,Edtech,Germany,Professional,13,253.4,451.1,69.0,Active
+ACC-0133,Client 133,E-commerce,Germany,Business,82,1063.27,2207.4,96.0,Active
+ACC-0134,Client 134,Healthcare,United States,Professional,20,304.1,560.4,30.0,Active
+ACC-0135,Client 135,Edtech,Australia,Starter,3,74.69,76.4,48.0,Active
+ACC-0136,Client 136,Marketing,Australia,Professional,15,272.08,227.7,95.0,Active
+ACC-0137,Client 137,Edtech,Singapore,Starter,2,65.41,82.5,22.0,Active
+ACC-0138,Client 138,Logistics,Australia,Enterprise,462,4941.27,12346.1,60.0,Active
+ACC-0139,Client 139,Logistics,United States,Starter,4,79.62,73.3,81.0,Active
+ACC-0140,Client 140,Logistics,Singapore,Starter,3,73.73,114.4,67.0,Active
+ACC-0141,Client 141,Marketing,United States,Business,75,1047.52,3252.8,76.0,Active
+ACC-0142,Client 142,E-commerce,Australia,Starter,2,64.71,79.9,50.0,Active
+ACC-0143,Client 143,Logistics,Germany,Professional,18,314.12,706.3,28.0,Active
+ACC-0144,Client 144,Logistics,Germany,Starter,4,85.3,100.6,72.0,Active
+ACC-0145,Client 145,Fintech,United States,Professional,19,310.85,827.0,35.0,Active
+ACC-0146,Client 146,E-commerce,Singapore,Starter,3,74.49,130.0,87.0,Active
+ACC-0147,Client 147,Marketing,Canada,Enterprise,484,5222.65,15607.5,51.0,Active
+ACC-0148,Client 148,Fintech,Germany,Professional,20,331.51,494.5,42.0,Active
+ACC-0149,Client 149,Marketing,Singapore,Business,34,713.89,536.2,41.0,Active
+ACC-0150,Client 150,Healthcare,Canada,Professional,6,204.14,224.8,,Active
+ACC-0151,Client 151,Logistics,United States,Starter,2,66.47,59.7,97.0,Active
+ACC-0152,Client 152,Fintech,Canada,Starter,3,74.22,89.3,86.0,Active
+ACC-0153,Client 153,Healthcare,Singapore,Professional,20,311.44,743.2,64.0,Active
+ACC-0154,Client 154,Logistics,United States,Starter,1,56.74,36.8,77.0,Active
+ACC-0155,Client 155,Logistics,Canada,Starter,5,91.19,174.6,55.0,Active
+ACC-0156,Client 156,E-commerce,Australia,Starter,4,84.79,102.5,31.0,Active
+ACC-0157,Client 157,E-commerce,Canada,Starter,5,95.51,157.4,70.0,Active
+ACC-0158,Client 158,Fintech,Canada,Professional,22,317.41,791.7,35.0,Active
+ACC-0159,Client 159,Logistics,United States,Business,64,904.26,1871.5,53.0,Active
+ACC-0160,Client 160,Fintech,United States,Starter,4,82.16,165.1,80.0,Active
+ACC-0161,Client 161,Logistics,Australia,Starter,1,57.28,31.4,24.0,Active
+ACC-0162,Client 162,Edtech,United Kingdom,Starter,1,57.95,15.8,71.0,Active
+ACC-0163,Client 163,Logistics,Germany,Starter,4,85.41,119.4,49.0,Active
+ACC-0164,Client 164,Fintech,Australia,Professional,11,246.48,347.1,31.0,Active
+ACC-0165,Client 165,E-commerce,Germany,Professional,11,238.2,413.1,90.0,Active
+ACC-0166,Client 166,Edtech,Singapore,Professional,6,202.9,212.2,42.0,Active
+ACC-0167,Client 167,Healthcare,United States,Business,59,853.16,2623.1,44.0,Active
+ACC-0168,Client 168,Edtech,Canada,Professional,14,267.17,328.2,48.0,Active
+ACC-0169,Client 169,Healthcare,Singapore,Business,75,1065.95,3271.9,64.0,Active
+ACC-0170,Client 170,E-commerce,United Kingdom,Starter,1,58.34,41.7,63.0,Active
+ACC-0171,Client 171,E-commerce,United States,Business,77,1024.05,1364.2,40.0,Active
+ACC-0172,Client 172,Marketing,United Kingdom,Starter,3,74.02,106.6,50.0,Active
+ACC-0173,Client 173,E-commerce,United Kingdom,Professional,20,311.25,829.6,42.0,Active
+ACC-0174,Client 174,Logistics,United Kingdom,Starter,1,57.16,43.6,86.0,Active
+ACC-0175,Client 175,Marketing,Singapore,Professional,23,335.72,761.8,94.0,Active
+ACC-0176,Client 176,Logistics,Singapore,Starter,1,58.09,33.4,49.0,Active
+ACC-0177,Client 177,Fintech,Canada,Professional,20,319.75,632.0,92.0,Active
+ACC-0178,Client 178,Marketing,Germany,Business,79,1095.52,2534.0,50.0,Active
+ACC-0179,Client 179,Marketing,Singapore,Business,69,940.35,2458.0,84.0,Active
+ACC-0180,Client 180,Fintech,Canada,Professional,15,283.06,563.5,86.0,Active
+ACC-0181,Client 181,E-commerce,Germany,Starter,4,80.88,179.0,66.0,Active
+ACC-0182,Client 182,Fintech,Canada,Starter,3,72.85,123.9,82.0,Active
+ACC-0183,Client 183,Fintech,Canada,Business,58,871.79,1428.3,31.0,Active
+ACC-0184,Client 184,Logistics,United Kingdom,Professional,21,318.53,748.7,42.0,Active
+ACC-0185,Client 185,Healthcare,Canada,Business,74,1044.07,2032.5,39.0,Active
+ACC-0186,Client 186,Logistics,Australia,Starter,4,82.64,108.6,33.0,Active
+ACC-0187,Client 187,Edtech,Canada,Starter,4,79.76,165.1,52.0,Active
+ACC-0188,Client 188,Logistics,Singapore,Professional,9,220.56,182.4,99.0,Active
+ACC-0189,Client 189,Marketing,Singapore,Starter,3,74.11,81.4,90.0,Active
+ACC-0190,Client 190,Fintech,Canada,Professional,13,251.38,484.1,67.0,Active
+ACC-0191,Client 191,Edtech,Canada,Professional,15,269.92,305.4,57.0,Active
+ACC-0192,Client 192,Logistics,United Kingdom,Starter,1,57.04,39.2,86.0,Active
+ACC-0193,Client 193,Marketing,United Kingdom,Professional,22,350.04,574.0,93.0,Active
+ACC-0194,Client 194,Healthcare,Singapore,Professional,14,257.74,364.8,86.0,Active
+ACC-0195,Client 195,E-commerce,Singapore,Starter,3,73.77,62.1,82.0,Active
+ACC-0196,Client 196,Marketing,Germany,Starter,2,65.79,56.3,46.0,Active
+ACC-0197,Client 197,Edtech,United States,Starter,4,80.57,112.8,70.0,Active
+ACC-0198,Client 198,Edtech,United Kingdom,Starter,3,73.09,67.0,54.0,Active
+ACC-0199,Client 199,Edtech,Germany,Professional,19,312.84,444.6,79.0,Active
+ACC-0200,Client 200,Logistics,Singapore,Starter,4,82.88,105.0,56.0,Active
+ACC-0201,Client 201,Fintech,Singapore,Starter,1,56.99,37.9,22.0,Active
+ACC-0202,Client 202,Healthcare,Singapore,Professional,19,298.12,800.2,58.0,Active
+ACC-0203,Client 203,Marketing,Singapore,Professional,20,332.37,507.8,76.0,Active
+ACC-0204,Client 204,Edtech,Germany,Starter,5,88.85,156.8,73.0,Active
+ACC-0205,Client 205,Healthcare,Australia,Business,79,1093.28,3494.6,21.0,Active
+ACC-0206,Client 206,Edtech,Australia,Professional,18,297.62,770.4,35.0,Active
+ACC-0207,Client 207,Healthcare,United States,Professional,16,297.58,625.1,92.0,Active
+ACC-0208,Client 208,Marketing,United States,Professional,25,372.88,696.1,90.0,Active
+ACC-0209,Client 209,E-commerce,Australia,Professional,19,302.48,745.0,37.0,Active
+ACC-0210,Client 210,Edtech,Germany,Business,68,953.72,1342.7,24.0,Active
+ACC-0211,Client 211,Logistics,United Kingdom,Business,88,1135.93,2761.5,71.0,Active
+ACC-0212,Client 212,Healthcare,Germany,Business,59,910.7,2581.5,63.0,Active
+ACC-0213,Client 213,Marketing,Australia,Starter,3,74.78,46.5,53.0,Active
+ACC-0214,Client 214,Fintech,Germany,Professional,8,215.4,176.6,68.0,Active
+ACC-0215,Client 215,Fintech,Australia,Starter,1,57.89,44.0,56.0,Active
+ACC-0216,Client 216,Healthcare,United States,Professional,11,237.39,380.8,96.0,Churned
+ACC-0217,Client 217,Edtech,Australia,Starter,1,57.64,19.0,35.0,Active
+ACC-0218,Client 218,Edtech,United States,Starter,2,67.09,51.1,76.0,Active
+ACC-0219,Client 219,Fintech,United States,Professional,11,239.59,482.7,90.0,Active
+ACC-0220,Client 220,E-commerce,United States,Business,79,1048.55,3157.1,62.0,Active
+ACC-0221,Client 221,Healthcare,Canada,Starter,5,93.88,159.6,31.0,Active
+ACC-0222,Client 222,E-commerce,United States,Business,74,1013.71,1400.7,51.0,Active
+ACC-0223,Client 223,Logistics,Germany,Starter,1,57.76,34.8,61.0,Active
+ACC-0224,Client 224,Healthcare,Canada,Professional,6,202.49,161.1,23.0,Active
+ACC-0225,Client 225,E-commerce,Canada,Professional,6,200.95,162.8,30.0,Active
+ACC-0226,Client 226,Fintech,Germany,Professional,6,202.19,168.6,22.0,Active
+ACC-0227,Client 227,E-commerce,United States,Starter,3,73.06,78.8,38.0,Active
+ACC-0228,Client 228,E-commerce,Canada,Professional,16,293.07,560.1,37.0,Active
+ACC-0229,Client 229,Healthcare,Singapore,Starter,3,74.2,58.4,22.0,Active
+ACC-0230,Client 230,Logistics,United States,Professional,19,324.22,854.4,54.0,Active
+ACC-0231,Client 231,Healthcare,United Kingdom,Starter,4,86.13,106.9,78.0,Active
+ACC-0232,Client 232,Fintech,Singapore,Professional,24,367.95,931.5,90.0,Active
+ACC-0233,Client 233,E-commerce,Canada,Business,64,917.74,1709.5,37.0,Active
+ACC-0234,Client 234,Marketing,Australia,Professional,14,265.6,304.9,62.0,Active
+ACC-0235,Client 235,Healthcare,Germany,Starter,4,85.35,169.6,21.0,Active
+ACC-0236,Client 236,Fintech,United Kingdom,Starter,2,65.16,66.5,29.0,Active
+ACC-0237,Client 237,Edtech,Australia,Business,74,1015.43,1996.0,88.0,Active
+ACC-0238,Client 238,Logistics,Singapore,Starter,4,79.8,144.6,49.0,Active
+ACC-0239,Client 239,Edtech,Canada,Professional,6,202.43,100.2,47.0,Active
+ACC-0240,Client 240,Healthcare,Singapore,Enterprise,438,5253.44,15341.4,77.0,Active
+ACC-0241,Client 241,E-commerce,Australia,Starter,3,72.12,75.1,65.0,Active
+ACC-0242,Client 242,Logistics,Singapore,Starter,5,91.29,108.4,59.0,Active
+ACC-0243,Client 243,Fintech,Canada,Business,80,1083.58,1318.8,30.0,Active
+ACC-0244,Client 244,Marketing,United Kingdom,Starter,4,86.3,137.2,92.0,Active
+ACC-0245,Client 245,Fintech,United Kingdom,Starter,4,82.44,87.2,40.0,Active
+ACC-0246,Client 246,Edtech,United States,Starter,1,57.88,30.1,70.0,Active
+ACC-0247,Client 247,Marketing,Canada,Professional,11,243.08,327.0,48.0,Active
+ACC-0248,Client 248,Marketing,Singapore,Starter,4,86.2,136.1,65.0,Active
+ACC-0249,Client 249,Marketing,Canada,Starter,4,80.37,111.6,97.0,Active
+ACC-0250,Client 250,Healthcare,United Kingdom,Starter,3,72.79,70.4,52.0,Active
+ACC-0251,Client 251,E-commerce,United States,Starter,1,57.85,44.1,51.0,Active
+ACC-0252,Client 252,Healthcare,Singapore,Starter,4,85.42,176.3,89.0,Active
+ACC-0253,Client 253,E-commerce,Canada,Starter,2,65.8,56.1,29.0,Churned
+ACC-0254,Client 254,E-commerce,Singapore,Business,69,928.48,2641.7,89.0,Active
+ACC-0255,Client 255,Logistics,Singapore,Starter,3,73.67,90.0,78.0,Active
+ACC-0256,Client 256,Marketing,Germany,Business,100,1300.79,2137.0,31.0,Active
+ACC-0257,Client 257,Healthcare,Singapore,Business,77,1074.65,1555.5,95.0,Active
+ACC-0258,Client 258,Fintech,Singapore,Starter,1,57.61,32.2,,Active
+ACC-0259,Client 259,Edtech,Singapore,Starter,5,90.52,91.3,88.0,Active
+ACC-0260,Client 260,Marketing,Singapore,Starter,4,79.9,146.3,97.0,Active
+ACC-0261,Client 261,Fintech,Canada,Enterprise,366,4462.66,10443.2,100.0,Active
+ACC-0262,Client 262,Logistics,Australia,Starter,3,72.35,46.0,66.0,Active
+ACC-0263,Client 263,Logistics,Australia,Professional,21,313.28,387.3,68.0,Active
+ACC-0264,Client 264,Fintech,United States,Starter,2,65.06,60.0,34.0,Active
+ACC-0265,Client 265,Fintech,Singapore,Business,70,1025.99,2694.1,26.0,Active
+ACC-0266,Client 266,Edtech,Singapore,Business,54,878.42,917.3,55.0,Active
+ACC-0267,Client 267,Healthcare,United States,Professional,5,188.09,81.0,68.0,Active
+ACC-0268,Client 268,Logistics,Germany,Business,95,1131.35,3528.0,42.0,Active
+ACC-0269,Client 269,E-commerce,United Kingdom,Professional,14,277.29,337.8,37.0,Active
+ACC-0270,Client 270,E-commerce,Canada,Professional,18,297.15,538.8,55.0,Active
+ACC-0271,Client 271,Healthcare,Canada,Starter,3,74.59,75.2,60.0,Active
+ACC-0272,Client 272,Healthcare,United States,Starter,2,66.53,39.8,86.0,Active
+ACC-0273,Client 273,Marketing,Germany,Enterprise,437,5254.68,18359.1,97.0,Active
+ACC-0274,Client 274,Fintech,Australia,Starter,1,58.24,35.9,33.0,Active
+ACC-0275,Client 275,Fintech,Australia,Starter,5,87.6,109.6,92.0,Active
+ACC-0276,Client 276,Marketing,Canada,Professional,13,251.75,487.2,69.0,Active
+ACC-0277,Client 277,Healthcare,Singapore,Professional,15,280.48,353.8,77.0,Active
+ACC-0278,Client 278,E-commerce,United Kingdom,Professional,20,303.63,565.0,47.0,Active
+ACC-0279,Client 279,Edtech,Singapore,Starter,3,74.49,59.7,55.0,Active
+ACC-0280,Client 280,E-commerce,Australia,Professional,24,363.84,814.2,49.0,Active
+ACC-0281,Client 281,E-commerce,Singapore,Business,47,781.83,882.2,56.0,Active
+ACC-0282,Client 282,Healthcare,Singapore,Professional,17,301.07,369.3,74.0,Active
+ACC-0283,Client 283,Healthcare,United Kingdom,Starter,4,85.16,176.0,20.0,Active
+ACC-0284,Client 284,Fintech,United States,Starter,4,82.82,71.5,24.0,Active
+ACC-0285,Client 285,Healthcare,United States,Starter,3,74.93,123.5,56.0,Active
+ACC-0286,Client 286,Fintech,Australia,Professional,11,239.35,357.2,27.0,Active
+ACC-0287,Client 287,Marketing,Canada,Professional,16,281.58,435.1,,Active
+ACC-0288,Client 288,Healthcare,United States,Starter,3,75.8,84.6,83.0,Active
+ACC-0289,Client 289,Marketing,Australia,Starter,2,66.56,64.7,84.0,Active
+ACC-0290,Client 290,Logistics,Canada,Professional,23,347.12,1000.1,64.0,Active
+ACC-0291,Client 291,E-commerce,United States,Professional,11,234.12,469.3,84.0,Active
+ACC-0292,Client 292,Fintech,Germany,Starter,1,57.42,28.7,71.0,Active
+ACC-0293,Client 293,Marketing,Canada,Starter,5,89.15,158.1,82.0,Active
+ACC-0294,Client 294,Healthcare,Australia,Starter,5,94.75,129.3,27.0,Active
+ACC-0295,Client 295,Fintech,Germany,Business,56,881.72,1406.8,30.0,Active
+ACC-0296,Client 296,E-commerce,Canada,Starter,3,73.41,46.3,50.0,Active
+ACC-0297,Client 297,E-commerce,Singapore,Starter,4,86.11,103.3,85.0,Active
+ACC-0298,Client 298,E-commerce,Germany,Starter,2,64.63,66.7,21.0,Active
+ACC-0299,Client 299,Marketing,Singapore,Business,42,768.88,1696.0,70.0,Active
+ACC-0300,Client 300,Marketing,Canada,Starter,1,57.15,43.0,57.0,Active
+ACC-0301,Client 301,Marketing,United Kingdom,Professional,14,265.51,398.9,71.0,Active
+ACC-0302,Client 302,Healthcare,Germany,Professional,24,348.78,442.1,65.0,Active
+ACC-0303,Client 303,Marketing,Australia,Professional,8,216.91,127.9,47.0,Active
+ACC-0304,Client 304,Logistics,Singapore,Starter,3,75.54,106.8,30.0,Churned
+ACC-0305,Client 305,Healthcare,Singapore,Business,64,972.7,2359.3,68.0,Active
+ACC-0306,Client 306,Logistics,Australia,Business,97,1278.28,2215.4,60.0,Active
+ACC-0307,Client 307,Fintech,Germany,Business,87,1101.79,3213.0,100.0,Active
+ACC-0308,Client 308,Edtech,Australia,Business,82,1142.09,2081.1,71.0,Active
+ACC-0309,Client 309,Edtech,United Kingdom,Starter,3,74.21,111.7,40.0,Active
+ACC-0310,Client 310,E-commerce,United States,Professional,12,242.99,226.9,60.0,Active
+ACC-0311,Client 311,E-commerce,Singapore,Professional,5,188.43,180.9,21.0,Active
+ACC-0312,Client 312,Marketing,Canada,Starter,5,87.96,100.6,32.0,Active
+ACC-0313,Client 313,Logistics,United States,Professional,21,326.3,432.2,62.0,Active
+ACC-0314,Client 314,Healthcare,Germany,Professional,14,279.43,308.8,27.0,Active
+ACC-0315,Client 315,Fintech,United Kingdom,Professional,8,218.91,299.7,68.0,Active
+ACC-0316,Client 316,Healthcare,United Kingdom,Enterprise,394,4908.61,12086.8,68.0,Active
+ACC-0317,Client 317,Marketing,Singapore,Professional,25,345.64,540.1,59.0,Active
+ACC-0318,Client 318,Edtech,Australia,Professional,12,253.12,205.9,76.0,Active
+ACC-0319,Client 319,Logistics,Germany,Starter,3,73.54,131.6,25.0,Active
+ACC-0320,Client 320,Logistics,Germany,Starter,2,65.98,48.2,84.0,Active
+ACC-0321,Client 321,Edtech,Germany,Professional,24,354.69,591.3,93.0,Active
+ACC-0322,Client 322,Edtech,Canada,Starter,2,64.37,78.0,99.0,Active
+ACC-0323,Client 323,Edtech,Germany,Professional,8,221.48,256.3,78.0,Active
+ACC-0324,Client 324,Healthcare,Singapore,Business,86,1082.76,2912.0,77.0,Active
+ACC-0325,Client 325,Logistics,Singapore,Starter,5,90.43,168.4,87.0,Active
+ACC-0326,Client 326,E-commerce,Singapore,Starter,1,58.11,18.0,89.0,Active
+ACC-0327,Client 327,Fintech,Germany,Professional,16,274.08,326.4,56.0,Active
+ACC-0328,Client 328,Edtech,Singapore,Professional,20,306.58,738.5,25.0,Active
+ACC-0329,Client 329,Logistics,United Kingdom,Professional,7,209.2,110.9,92.0,Active
+ACC-0330,Client 330,Marketing,United Kingdom,Enterprise,132,2506.22,5671.6,70.0,Active
+ACC-0331,Client 331,Marketing,Canada,Starter,2,67.23,38.4,89.0,Active
+ACC-0332,Client 332,Edtech,Australia,Starter,3,75.13,94.8,70.0,Active
+ACC-0333,Client 333,Logistics,Singapore,Professional,9,225.04,385.1,28.0,Active
+ACC-0334,Client 334,Edtech,Canada,Starter,2,64.77,52.3,96.0,Active
+ACC-0335,Client 335,Fintech,Australia,Starter,3,76.14,123.8,73.0,Active
+ACC-0336,Client 336,E-commerce,Canada,Starter,2,64.52,39.1,38.0,Active
+ACC-0337,Client 337,Healthcare,United Kingdom,Business,46,815.4,1603.9,76.0,Active
+ACC-0338,Client 338,Edtech,United States,Professional,10,229.41,400.3,44.0,Active
+ACC-0339,Client 339,Marketing,Australia,Starter,5,93.24,215.3,,Active
+ACC-0340,Client 340,E-commerce,Germany,Starter,4,86.26,145.2,35.0,Active
+ACC-0341,Client 341,Logistics,United Kingdom,Business,46,757.71,1374.7,85.0,Active
+ACC-0342,Client 342,Healthcare,United Kingdom,Starter,5,94.49,100.6,61.0,Active
+ACC-0343,Client 343,E-commerce,Canada,Starter,5,88.28,176.3,48.0,Active
+ACC-0344,Client 344,Edtech,Australia,Enterprise,166,2606.98,4304.9,53.0,Active
+ACC-0345,Client 345,Edtech,United States,Business,42,780.97,1475.5,58.0,Active
+ACC-0346,Client 346,Fintech,Germany,Starter,5,89.38,143.9,44.0,Active
+ACC-0347,Client 347,Fintech,Singapore,Starter,1,58.0,37.9,58.0,Active
+ACC-0348,Client 348,Logistics,United States,Starter,1,57.93,24.6,70.0,Active
+ACC-0349,Client 349,Fintech,Germany,Starter,1,57.9,40.5,62.0,Active
+ACC-0350,Client 350,Marketing,Australia,Professional,21,332.17,331.6,76.0,Active
+ACC-0351,Client 351,E-commerce,Australia,Business,53,841.82,1331.7,53.0,Active
+ACC-0352,Client 352,Fintech,Singapore,Professional,21,318.6,326.9,50.0,Active
+ACC-0353,Client 353,Marketing,United Kingdom,Starter,4,86.09,91.9,85.0,Active
+ACC-0354,Client 354,Healthcare,Singapore,Enterprise,225,3341.55,6777.4,80.0,Active
+ACC-0355,Client 355,E-commerce,United Kingdom,Business,48,779.08,1363.2,49.0,Active
+ACC-0356,Client 356,Healthcare,United States,Starter,4,84.26,161.1,83.0,Active
+ACC-0357,Client 357,Marketing,United Kingdom,Professional,6,200.01,232.3,72.0,Active
+ACC-0358,Client 358,Edtech,Australia,Starter,5,95.05,89.5,71.0,Active
+ACC-0359,Client 359,Edtech,United States,Starter,4,82.28,74.7,36.0,Churned
+ACC-0360,Client 360,Marketing,Singapore,Professional,25,346.72,917.8,100.0,Active
+ACC-0361,Client 361,Edtech,Germany,Starter,4,82.61,109.8,23.0,Active
+ACC-0362,Client 362,Logistics,United States,Starter,5,91.74,203.7,,Active
+ACC-0363,Client 363,Marketing,United States,Professional,11,247.79,170.4,100.0,Active
+ACC-0364,Client 364,Edtech,United Kingdom,Professional,12,241.51,307.5,72.0,Active
+ACC-0365,Client 365,Marketing,Singapore,Starter,1,57.04,19.6,65.0,Active
+ACC-0366,Client 366,E-commerce,United States,Starter,3,73.86,112.5,68.0,Active
+ACC-0367,Client 367,Healthcare,United Kingdom,Starter,1,56.65,15.5,59.0,Active
+ACC-0368,Client 368,Edtech,Australia,Starter,1,56.83,28.2,44.0,Active
+ACC-0369,Client 369,Fintech,Germany,Business,80,1026.75,2131.7,41.0,Active
+ACC-0370,Client 370,Logistics,Canada,Professional,18,306.76,580.9,36.0,Active
+ACC-0371,Client 371,Fintech,Singapore,Business,87,1171.24,1537.8,42.0,Active
+ACC-0372,Client 372,Edtech,Singapore,Professional,20,302.84,555.6,79.0,Active
+ACC-0373,Client 373,Edtech,United States,Starter,2,64.53,70.0,85.0,Active
+ACC-0374,Client 374,Edtech,United Kingdom,Starter,3,72.03,118.3,49.0,Active
+ACC-0375,Client 375,Edtech,Singapore,Business,81,1078.83,3087.4,48.0,Active
+ACC-0376,Client 376,Marketing,Germany,Starter,3,75.93,71.6,69.0,Active
+ACC-0377,Client 377,E-commerce,Singapore,Starter,3,72.13,58.7,85.0,Active
+ACC-0378,Client 378,Fintech,United States,Professional,12,242.41,467.0,69.0,Active
+ACC-0379,Client 379,Marketing,Singapore,Business,67,928.27,2383.1,73.0,Churned
+ACC-0380,Client 380,Healthcare,Australia,Professional,23,357.86,945.7,61.0,Active
+ACC-0381,Client 381,Marketing,Germany,Starter,3,75.88,127.8,62.0,Active
+ACC-0382,Client 382,Fintech,United States,Professional,17,289.31,673.3,67.0,Active
+ACC-0383,Client 383,Healthcare,Australia,Professional,20,326.95,461.9,53.0,Active
+ACC-0384,Client 384,Fintech,Australia,Professional,20,335.05,441.0,30.0,Active
+ACC-0385,Client 385,Healthcare,United States,Professional,7,204.83,238.3,63.0,Active
+ACC-0386,Client 386,Edtech,United States,Professional,7,212.61,188.9,39.0,Active
+ACC-0387,Client 387,Fintech,United States,Professional,9,221.24,174.1,33.0,Active
+ACC-0388,Client 388,Edtech,Australia,Starter,1,57.16,18.8,57.0,Active
+ACC-0389,Client 389,Marketing,Australia,Business,89,1138.07,3066.4,67.0,Active
+ACC-0390,Client 390,Edtech,Australia,Professional,18,306.34,749.7,49.0,Active
+ACC-0391,Client 391,Edtech,United States,Professional,15,273.92,652.5,99.0,Active
+ACC-0392,Client 392,Marketing,Canada,Professional,10,225.84,432.3,48.0,Active
+ACC-0393,Client 393,E-commerce,United States,Starter,3,74.45,58.6,55.0,Active
+ACC-0394,Client 394,Healthcare,Canada,Starter,1,57.45,15.6,51.0,Active
+ACC-0395,Client 395,Fintech,Singapore,Professional,10,234.56,449.3,35.0,Active
+ACC-0396,Client 396,E-commerce,United Kingdom,Business,54,816.96,1283.2,45.0,Active
+ACC-0397,Client 397,Edtech,United Kingdom,Professional,25,372.27,942.0,24.0,Active
+ACC-0398,Client 398,Fintech,United Kingdom,Starter,5,92.64,190.6,27.0,Active
+ACC-0399,Client 399,Edtech,Singapore,Enterprise,302,3723.82,13479.9,87.0,Active
+ACC-0400,Client 400,Edtech,Canada,Business,66,1010.53,1643.0,49.0,Active
+ACC-0401,Client 401,Marketing,Canada,Starter,3,76.42,76.8,43.0,Active
+ACC-0402,Client 402,Marketing,United Kingdom,Starter,4,84.06,160.0,63.0,Active
+ACC-0403,Client 403,E-commerce,United States,Professional,17,286.62,652.5,89.0,Active
+ACC-0404,Client 404,Fintech,Australia,Professional,18,291.42,515.2,73.0,Active
+ACC-0405,Client 405,Healthcare,Singapore,Business,69,1023.02,2969.6,44.0,Active
+ACC-0406,Client 406,Healthcare,Germany,Professional,19,308.54,328.0,98.0,Active
+ACC-0407,Client 407,Marketing,Germany,Professional,21,320.52,842.5,28.0,Active
+ACC-0408,Client 408,Fintech,Canada,Enterprise,373,4609.89,9803.4,23.0,Active
+ACC-0409,Client 409,Marketing,Australia,Business,84,1125.69,1747.8,60.0,Active
+ACC-0410,Client 410,Marketing,Canada,Starter,2,65.28,31.7,96.0,Active
+ACC-0411,Client 411,Marketing,United States,Professional,17,283.43,429.4,85.0,Active
+ACC-0412,Client 412,Marketing,United Kingdom,Starter,3,74.98,112.7,78.0,Active
+ACC-0413,Client 413,Edtech,Singapore,Professional,18,293.12,513.1,54.0,Active
+ACC-0414,Client 414,Marketing,United Kingdom,Business,30,630.58,1200.2,78.0,Active
+ACC-0415,Client 415,Fintech,Australia,Professional,11,238.72,407.1,44.0,Active
+ACC-0416,Client 416,E-commerce,United Kingdom,Business,25,595.84,636.5,29.0,Active
+ACC-0417,Client 417,Healthcare,Canada,Starter,2,66.39,31.3,54.0,Active
+ACC-0418,Client 418,E-commerce,Canada,Starter,3,74.94,95.3,51.0,Active
+ACC-0419,Client 419,E-commerce,United States,Starter,3,73.37,127.2,55.0,Active
+ACC-0420,Client 420,Fintech,United Kingdom,Starter,5,95.57,158.9,31.0,Active
+ACC-0421,Client 421,Healthcare,Canada,Starter,2,64.44,79.6,91.0,Active
+ACC-0422,Client 422,Healthcare,Australia,Starter,4,83.72,175.0,67.0,Active
+ACC-0423,Client 423,E-commerce,Singapore,Professional,11,250.21,238.8,77.0,Active
+ACC-0424,Client 424,Healthcare,Canada,Starter,4,85.8,83.3,37.0,Churned
+ACC-0425,Client 425,Logistics,Canada,Professional,14,273.26,276.7,20.0,Active
+ACC-0426,Client 426,E-commerce,United States,Starter,5,95.68,137.9,99.0,Active
+ACC-0427,Client 427,Healthcare,Australia,Professional,5,188.77,109.5,81.0,Active
+ACC-0428,Client 428,Fintech,United States,Starter,1,57.57,15.4,95.0,Active
+ACC-0429,Client 429,E-commerce,United States,Starter,4,81.12,82.2,58.0,Active
+ACC-0430,Client 430,Edtech,Australia,Starter,3,73.86,117.8,,Active
+ACC-0431,Client 431,E-commerce,Canada,Starter,3,75.7,54.3,75.0,Active
+ACC-0432,Client 432,Healthcare,Germany,Starter,3,76.48,119.6,44.0,Churned
+ACC-0433,Client 433,E-commerce,Canada,Professional,18,307.18,279.1,78.0,Active
+ACC-0434,Client 434,Edtech,Canada,Professional,10,240.15,261.2,43.0,Active
+ACC-0435,Client 435,Marketing,Germany,Business,27,618.82,660.3,96.0,Active
+ACC-0436,Client 436,E-commerce,Germany,Starter,5,88.95,172.5,31.0,Active
+ACC-0437,Client 437,Healthcare,Canada,Professional,25,372.92,660.4,57.0,Active
+ACC-0438,Client 438,Healthcare,Australia,Business,95,1228.53,2193.3,41.0,Active
+ACC-0439,Client 439,Logistics,Singapore,Starter,1,56.8,32.3,76.0,Active
+ACC-0440,Client 440,E-commerce,Germany,Professional,20,313.29,683.3,79.0,Active
+ACC-0441,Client 441,Healthcare,Australia,Starter,5,93.16,94.7,91.0,Active
+ACC-0442,Client 442,Logistics,United States,Enterprise,307,3821.07,8865.3,95.0,Active
+ACC-0443,Client 443,Healthcare,Singapore,Professional,14,277.52,273.2,95.0,Active
+ACC-0444,Client 444,E-commerce,Australia,Business,89,1223.47,3840.4,66.0,Active
+ACC-0445,Client 445,Marketing,United Kingdom,Professional,23,337.42,557.0,67.0,Active
+ACC-0446,Client 446,Marketing,Germany,Professional,6,202.07,258.1,83.0,Active
+ACC-0447,Client 447,E-commerce,United Kingdom,Starter,1,57.82,33.6,38.0,Churned
+ACC-0448,Client 448,Marketing,United States,Starter,3,76.84,53.0,65.0,Active
+ACC-0449,Client 449,Logistics,Australia,Professional,17,300.8,603.2,69.0,Active
+ACC-0450,Client 450,Edtech,United States,Starter,3,73.24,91.8,78.0,Active
+ACC-0451,Client 451,Logistics,Canada,Starter,3,74.81,65.8,88.0,Churned
+ACC-0452,Client 452,Fintech,United States,Enterprise,133,2319.58,5580.8,95.0,Active
+ACC-0453,Client 453,E-commerce,Germany,Business,76,1000.81,2392.8,96.0,Active
+ACC-0454,Client 454,Fintech,Germany,Business,61,877.33,1921.1,38.0,Active
+ACC-0455,Client 455,Fintech,Canada,Business,82,1095.19,3064.6,,Active
+ACC-0456,Client 456,Fintech,Australia,Professional,24,358.6,791.3,25.0,Active
+ACC-0457,Client 457,Fintech,Germany,Starter,2,65.78,68.4,23.0,Active
+ACC-0458,Client 458,E-commerce,Canada,Professional,23,339.26,974.3,70.0,Active
+ACC-0459,Client 459,Marketing,Germany,Starter,4,82.63,143.7,83.0,Active
+ACC-0460,Client 460,E-commerce,Singapore,Starter,1,58.24,30.6,30.0,Active
+ACC-0461,Client 461,Marketing,Canada,Business,82,1076.01,1980.1,77.0,Active
+ACC-0462,Client 462,Marketing,United States,Starter,3,73.65,97.3,70.0,Active
+ACC-0463,Client 463,E-commerce,Australia,Starter,4,83.18,172.7,35.0,Active
+ACC-0464,Client 464,Marketing,Australia,Starter,2,66.02,73.5,53.0,Active
+ACC-0465,Client 465,Fintech,United Kingdom,Professional,8,223.55,313.9,28.0,Active
+ACC-0466,Client 466,E-commerce,Singapore,Starter,1,57.2,21.7,29.0,Churned
+ACC-0467,Client 467,Logistics,United States,Professional,11,236.14,249.4,22.0,Active
+ACC-0468,Client 468,Healthcare,Canada,Enterprise,242,3262.43,8061.3,26.0,Churned
+ACC-0469,Client 469,Fintech,Singapore,Professional,7,212.66,138.9,24.0,Active
+ACC-0470,Client 470,Healthcare,Canada,Professional,7,211.29,111.0,21.0,Active
+ACC-0471,Client 471,Logistics,Canada,Professional,18,305.99,696.0,62.0,Active
+ACC-0472,Client 472,Marketing,Canada,Business,89,1223.22,1620.2,35.0,Active
+ACC-0473,Client 473,Logistics,Australia,Business,56,848.55,1152.6,84.0,Active
+ACC-0474,Client 474,Edtech,Germany,Professional,23,340.73,931.4,41.0,Active
+ACC-0475,Client 475,E-commerce,United States,Professional,22,340.29,684.0,90.0,Active
+ACC-0476,Client 476,Logistics,Canada,Starter,2,65.27,36.2,68.0,Active
+ACC-0477,Client 477,Healthcare,Australia,Professional,23,345.44,890.5,80.0,Active
+ACC-0478,Client 478,E-commerce,Australia,Starter,3,75.13,61.6,99.0,Active
+ACC-0479,Client 479,Healthcare,Singapore,Professional,19,298.43,294.0,84.0,Active
+ACC-0480,Client 480,Marketing,United Kingdom,Starter,4,81.8,69.6,67.0,Active
+ACC-0481,Client 481,Edtech,Canada,Business,92,1115.78,3563.4,63.0,Active
+ACC-0482,Client 482,Edtech,United Kingdom,Enterprise,299,3817.46,8481.9,22.0,Active
+ACC-0483,Client 483,Healthcare,Canada,Professional,5,191.88,136.8,64.0,Churned
+ACC-0484,Client 484,Marketing,Germany,Business,49,842.46,1593.8,99.0,Active
+ACC-0485,Client 485,E-commerce,Canada,Starter,3,75.76,76.3,55.0,Churned
+ACC-0486,Client 486,Marketing,Australia,Starter,3,72.18,51.3,84.0,Active
+ACC-0487,Client 487,E-commerce,Canada,Starter,5,94.72,114.9,33.0,Active
+ACC-0488,Client 488,Logistics,United States,Professional,5,189.43,121.3,57.0,Active
+ACC-0489,Client 489,E-commerce,Australia,Professional,12,244.99,504.6,88.0,Active
+ACC-0490,Client 490,Logistics,United States,Starter,4,85.23,167.7,21.0,Active
+ACC-0491,Client 491,Fintech,Canada,Starter,3,76.51,124.7,75.0,Active
+ACC-0492,Client 492,Fintech,Singapore,Professional,6,197.29,240.4,39.0,Active
+ACC-0493,Client 493,Fintech,United States,Enterprise,245,3194.06,6680.5,45.0,Active
+ACC-0494,Client 494,Healthcare,Singapore,Starter,3,73.66,55.3,60.0,Active
+ACC-0495,Client 495,Edtech,United States,Starter,1,57.97,31.8,72.0,Active
+ACC-0496,Client 496,Edtech,Australia,Professional,9,224.48,174.9,24.0,Active
+ACC-0497,Client 497,Marketing,Canada,Starter,1,57.59,35.7,30.0,Active
+ACC-0498,Client 498,Healthcare,Canada,Starter,3,76.89,88.5,57.0,Active
+ACC-0499,Client 499,E-commerce,Germany,Professional,20,321.91,672.2,95.0,Active
+ACC-0500,Client 500,Healthcare,United States,Professional,20,326.57,398.9,50.0,Active
+ACC-0501,Client 501,Edtech,United Kingdom,Professional,25,346.35,571.2,88.0,Active
+ACC-0502,Client 502,Marketing,United Kingdom,Starter,2,65.06,78.9,78.0,Active
+ACC-0503,Client 503,Marketing,Germany,Business,46,795.89,1208.2,34.0,Active
+ACC-0504,Client 504,Fintech,United States,Enterprise,456,5375.59,11920.6,22.0,Active
+ACC-0505,Client 505,E-commerce,Germany,Starter,2,65.05,89.1,45.0,Active
+ACC-0506,Client 506,Healthcare,Singapore,Professional,9,230.96,236.2,33.0,Active
+ACC-0507,Client 507,Fintech,Germany,Enterprise,318,4045.77,12020.5,70.0,Active
+ACC-0508,Client 508,Healthcare,United Kingdom,Starter,4,80.38,160.5,51.0,Active
+ACC-0509,Client 509,Marketing,United Kingdom,Professional,22,327.39,940.1,95.0,Active
+ACC-0510,Client 510,Fintech,Singapore,Business,81,1088.86,1839.9,51.0,Active
+ACC-0511,Client 511,Marketing,Canada,Starter,1,57.62,37.3,77.0,Active
+ACC-0512,Client 512,Healthcare,Singapore,Starter,5,89.14,98.9,,Active
+ACC-0513,Client 513,Edtech,Singapore,Professional,23,342.5,1027.3,100.0,Active
+ACC-0514,Client 514,Healthcare,United States,Starter,2,64.99,47.1,61.0,Active
+ACC-0515,Client 515,Logistics,Australia,Starter,3,76.31,103.9,28.0,Active
+ACC-0516,Client 516,Logistics,United States,Professional,13,250.48,583.5,88.0,Active
+ACC-0517,Client 517,Healthcare,Germany,Starter,4,79.9,125.3,77.0,Active
+ACC-0518,Client 518,Edtech,United Kingdom,Starter,5,90.15,208.9,76.0,Active
+ACC-0519,Client 519,Healthcare,Germany,Business,56,868.09,2328.6,23.0,Active
+ACC-0520,Client 520,Logistics,United States,Professional,8,220.98,339.0,66.0,Active
+ACC-0521,Client 521,Logistics,United Kingdom,Starter,3,74.66,84.5,33.0,Active
+ACC-0522,Client 522,Healthcare,Germany,Professional,6,195.57,140.2,43.0,Active
+ACC-0523,Client 523,Logistics,Canada,Starter,2,66.53,51.3,64.0,Active
+ACC-0524,Client 524,Edtech,Germany,Professional,12,254.36,309.3,75.0,Active
+ACC-0525,Client 525,E-commerce,Australia,Business,43,780.45,1912.1,76.0,Active
+ACC-0526,Client 526,Logistics,Singapore,Professional,11,240.77,397.7,66.0,Active
+ACC-0527,Client 527,Logistics,United States,Starter,1,58.0,28.0,90.0,Active
+ACC-0528,Client 528,Logistics,Germany,Professional,5,190.09,222.7,68.0,Active
+ACC-0529,Client 529,Edtech,Australia,Starter,4,82.06,109.9,62.0,Active
+ACC-0530,Client 530,Logistics,Canada,Professional,20,327.26,321.1,49.0,Active
+ACC-0531,Client 531,Marketing,Australia,Starter,1,57.34,23.7,67.0,Churned
+ACC-0532,Client 532,E-commerce,Singapore,Professional,23,358.91,1023.9,45.0,Active
+ACC-0533,Client 533,Healthcare,Singapore,Enterprise,438,5313.47,11831.3,42.0,Active
+ACC-0534,Client 534,Edtech,United States,Professional,17,307.51,397.9,63.0,Active
+ACC-0535,Client 535,Logistics,Australia,Professional,9,220.35,252.3,69.0,Active
+ACC-0536,Client 536,Edtech,United States,Starter,5,94.97,88.5,98.0,Active
+ACC-0537,Client 537,Edtech,Canada,Business,94,1251.19,1566.3,91.0,Active
+ACC-0538,Client 538,Logistics,Australia,Professional,10,241.29,363.0,59.0,Active
+ACC-0539,Client 539,Marketing,Canada,Professional,13,250.19,346.0,94.0,Active
+ACC-0540,Client 540,Fintech,Canada,Professional,18,289.33,483.4,,Active
+ACC-0541,Client 541,Logistics,Singapore,Starter,4,81.13,102.0,20.0,Active
+ACC-0542,Client 542,Healthcare,Canada,Professional,20,333.26,675.9,43.0,Active
+ACC-0543,Client 543,E-commerce,Canada,Starter,4,84.19,122.6,41.0,Active
+ACC-0544,Client 544,Edtech,Germany,Starter,4,82.31,138.5,74.0,Active
+ACC-0545,Client 545,Fintech,Australia,Business,35,687.21,1355.4,64.0,Active
+ACC-0546,Client 546,Edtech,United Kingdom,Business,98,1260.21,3359.0,76.0,Active
+ACC-0547,Client 547,E-commerce,Australia,Professional,17,298.33,752.1,63.0,Active
+ACC-0548,Client 548,Edtech,Canada,Professional,25,362.52,717.0,79.0,Active
+ACC-0549,Client 549,E-commerce,Australia,Starter,3,76.56,75.0,23.0,Active
+ACC-0550,Client 550,E-commerce,Singapore,Starter,4,80.64,173.7,85.0,Active
+ACC-0551,Client 551,Healthcare,Australia,Business,89,1194.94,1411.6,80.0,Active
+ACC-0552,Client 552,Logistics,Australia,Starter,3,75.52,48.4,31.0,Active
+ACC-0553,Client 553,Marketing,Germany,Professional,20,335.61,498.0,82.0,Active
+ACC-0554,Client 554,Edtech,Germany,Professional,14,257.42,556.9,37.0,Churned
+ACC-0555,Client 555,Logistics,Australia,Starter,5,91.59,122.5,85.0,Active
+ACC-0556,Client 556,E-commerce,United States,Professional,7,214.33,172.7,59.0,Churned
+ACC-0557,Client 557,Edtech,United Kingdom,Professional,13,257.49,572.4,86.0,Active
+ACC-0558,Client 558,Fintech,Australia,Starter,5,89.75,88.2,57.0,Active
+ACC-0559,Client 559,Marketing,United Kingdom,Business,27,618.83,520.6,39.0,Active
+ACC-0560,Client 560,Edtech,Singapore,Professional,22,333.39,499.3,98.0,Active
+ACC-0561,Client 561,Marketing,United Kingdom,Starter,5,89.77,202.4,35.0,Active
+ACC-0562,Client 562,E-commerce,Singapore,Professional,21,326.61,334.2,76.0,Active
+ACC-0563,Client 563,Fintech,Australia,Starter,5,91.14,199.6,65.0,Active
+ACC-0564,Client 564,Healthcare,Germany,Professional,5,191.49,127.2,52.0,Active
+ACC-0565,Client 565,Logistics,United States,Professional,7,211.82,270.8,41.0,Active
+ACC-0566,Client 566,Healthcare,United States,Professional,5,189.88,192.6,23.0,Active
+ACC-0567,Client 567,E-commerce,United States,Starter,2,65.64,46.0,89.0,Active
+ACC-0568,Client 568,Logistics,Canada,Business,30,662.42,775.6,49.0,Active
+ACC-0569,Client 569,Fintech,Canada,Starter,5,94.42,215.6,47.0,Active
+ACC-0570,Client 570,E-commerce,Germany,Enterprise,397,4432.95,13495.9,88.0,Active
+ACC-0571,Client 571,Edtech,Germany,Starter,2,66.76,89.4,72.0,Churned
+ACC-0572,Client 572,Edtech,Australia,Business,71,1035.52,1841.6,76.0,Active
+ACC-0573,Client 573,Healthcare,Canada,Business,56,907.88,1151.0,95.0,Active
+ACC-0574,Client 574,Marketing,Germany,Starter,4,81.81,169.1,71.0,Active
+ACC-0575,Client 575,Healthcare,United Kingdom,Starter,5,92.69,216.4,61.0,Active
+ACC-0576,Client 576,Marketing,United States,Professional,24,357.85,788.9,38.0,Active
+ACC-0577,Client 577,Fintech,Germany,Professional,11,241.17,256.4,21.0,Active
+ACC-0578,Client 578,Fintech,Canada,Business,53,863.35,1616.5,20.0,Active
+ACC-0579,Client 579,Fintech,Germany,Professional,10,239.92,184.5,58.0,Active
+ACC-0580,Client 580,E-commerce,United States,Business,35,698.6,723.6,95.0,Active
+ACC-0581,Client 581,Edtech,Singapore,Business,57,892.22,1941.4,62.0,Active
+ACC-0582,Client 582,Logistics,Germany,Business,26,618.16,628.9,20.0,Active
+ACC-0583,Client 583,Marketing,Germany,Business,67,948.34,1692.3,,Active
+ACC-0584,Client 584,Logistics,Singapore,Professional,15,279.36,577.0,31.0,Active
+ACC-0585,Client 585,Fintech,United Kingdom,Starter,2,66.28,89.3,59.0,Active
+ACC-0586,Client 586,E-commerce,Australia,Professional,24,348.75,941.3,95.0,Active
+ACC-0587,Client 587,Logistics,Australia,Starter,5,93.22,206.6,48.0,Active
+ACC-0588,Client 588,Edtech,United States,Starter,2,65.74,67.8,47.0,Active
+ACC-0589,Client 589,Edtech,United Kingdom,Professional,6,204.44,148.6,95.0,Active
+ACC-0590,Client 590,Edtech,Singapore,Business,98,1160.43,2000.6,97.0,Active
+ACC-0591,Client 591,Fintech,Germany,Professional,8,216.35,316.3,54.0,Active
+ACC-0592,Client 592,Fintech,Germany,Business,49,820.87,1324.1,80.0,Active
+ACC-0593,Client 593,Edtech,Australia,Professional,14,263.72,473.9,37.0,Active
+ACC-0594,Client 594,Logistics,Canada,Starter,2,66.77,34.9,24.0,Active
+ACC-0595,Client 595,Marketing,Germany,Starter,1,56.93,23.2,37.0,Active
+ACC-0596,Client 596,Edtech,Canada,Business,25,616.67,643.7,22.0,Active
+ACC-0597,Client 597,Healthcare,Singapore,Enterprise,429,5258.79,13435.5,82.0,Active
+ACC-0598,Client 598,Edtech,Germany,Enterprise,239,3444.4,5151.5,57.0,Active
+ACC-0599,Client 599,Logistics,United States,Starter,4,86.08,83.5,55.0,Active
+ACC-0600,Client 600,Edtech,United Kingdom,Professional,11,247.83,391.0,28.0,Active
+ACC-0601,Client 601,Logistics,Canada,Professional,17,299.81,362.7,20.0,Churned
+ACC-0602,Client 602,Edtech,United States,Starter,5,90.68,154.4,26.0,Active
+ACC-0603,Client 603,Marketing,Canada,Starter,1,58.19,30.8,76.0,Active
+ACC-0604,Client 604,Marketing,Germany,Professional,12,258.01,339.3,61.0,Active
+ACC-0605,Client 605,Healthcare,Australia,Professional,12,258.71,308.6,38.0,Active
+ACC-0606,Client 606,E-commerce,Singapore,Starter,4,80.78,103.6,28.0,Active
+ACC-0607,Client 607,Edtech,Canada,Starter,3,72.91,93.7,94.0,Active
+ACC-0608,Client 608,E-commerce,Canada,Business,25,593.27,426.5,95.0,Active
+ACC-0609,Client 609,Marketing,Canada,Professional,22,320.98,655.0,64.0,Active
+ACC-0610,Client 610,Healthcare,Germany,Business,39,737.28,1324.5,76.0,Active
+ACC-0611,Client 611,Healthcare,Australia,Professional,17,303.23,420.9,51.0,Active
+ACC-0612,Client 612,Logistics,Germany,Professional,14,264.54,291.8,63.0,Active
+ACC-0613,Client 613,Fintech,United Kingdom,Professional,15,266.03,546.0,39.0,Active
+ACC-0614,Client 614,Fintech,Canada,Professional,8,212.68,192.5,98.0,Active
+ACC-0615,Client 615,Marketing,United States,Starter,4,83.19,116.7,91.0,Active
+ACC-0616,Client 616,Fintech,United States,Starter,5,95.16,159.8,42.0,Active
+ACC-0617,Client 617,E-commerce,Germany,Starter,1,58.15,32.0,25.0,Active
+ACC-0618,Client 618,Logistics,Germany,Professional,5,194.84,160.7,30.0,Active
+ACC-0619,Client 619,Marketing,Singapore,Professional,5,195.14,80.1,84.0,Active
+ACC-0620,Client 620,Fintech,Singapore,Enterprise,196,3112.28,5987.2,40.0,Churned
+ACC-0621,Client 621,Healthcare,United States,Starter,3,74.52,86.1,57.0,Active
+ACC-0622,Client 622,Logistics,Germany,Starter,4,80.31,62.6,67.0,Active
+ACC-0623,Client 623,E-commerce,Canada,Professional,10,238.11,216.3,29.0,Active
+ACC-0624,Client 624,E-commerce,Canada,Starter,4,80.87,87.1,68.0,Active
+ACC-0625,Client 625,Fintech,Australia,Starter,1,57.97,15.8,45.0,Churned
+ACC-0626,Client 626,Fintech,Germany,Professional,24,345.08,873.2,55.0,Active
+ACC-0627,Client 627,Healthcare,Singapore,Business,92,1218.35,2939.6,51.0,Active
+ACC-0628,Client 628,Marketing,United Kingdom,Professional,22,327.87,381.8,38.0,Active
+ACC-0629,Client 629,Healthcare,United States,Professional,9,220.54,207.9,32.0,Active
+ACC-0630,Client 630,Healthcare,Australia,Professional,25,343.34,874.2,24.0,Active
+ACC-0631,Client 631,Marketing,United States,Enterprise,322,3948.12,10628.6,86.0,Active
+ACC-0632,Client 632,Fintech,United States,Professional,12,258.88,315.6,32.0,Active
+ACC-0633,Client 633,Edtech,United Kingdom,Enterprise,385,4822.79,9290.8,59.0,Active
+ACC-0634,Client 634,Marketing,Germany,Professional,25,370.57,1076.8,90.0,Active
+ACC-0635,Client 635,Healthcare,Canada,Starter,3,76.05,46.5,84.0,Active
+ACC-0636,Client 636,Edtech,Canada,Professional,21,327.6,742.9,64.0,Active
+ACC-0637,Client 637,Edtech,Australia,Starter,5,94.69,86.0,41.0,Active
+ACC-0638,Client 638,Logistics,Canada,Professional,8,218.41,319.0,30.0,Active
+ACC-0639,Client 639,Fintech,Australia,Starter,4,80.55,177.9,97.0,Active
+ACC-0640,Client 640,Logistics,Germany,Professional,17,287.6,267.7,93.0,Active
+ACC-0641,Client 641,E-commerce,Singapore,Business,40,721.51,1532.4,69.0,Active
+ACC-0642,Client 642,Healthcare,Singapore,Business,97,1269.26,2064.6,92.0,Active
+ACC-0643,Client 643,Fintech,Germany,Starter,1,56.91,43.3,37.0,Active
+ACC-0644,Client 644,Fintech,Germany,Starter,2,66.14,53.8,78.0,Active
+ACC-0645,Client 645,Healthcare,United States,Business,80,1054.44,3160.4,51.0,Active
+ACC-0646,Client 646,Fintech,Canada,Professional,7,213.81,227.9,20.0,Active
+ACC-0647,Client 647,Fintech,Australia,Business,70,978.89,2802.3,36.0,Active
+ACC-0648,Client 648,Edtech,Australia,Starter,5,95.3,211.0,92.0,Active
+ACC-0649,Client 649,Fintech,United Kingdom,Business,58,849.5,2366.0,61.0,Active
+ACC-0650,Client 650,Marketing,Singapore,Business,27,615.2,526.0,65.0,Active
+ACC-0651,Client 651,Edtech,Australia,Business,76,1077.42,1444.7,80.0,Active
+ACC-0652,Client 652,Edtech,United States,Starter,2,64.59,51.4,75.0,Active
+ACC-0653,Client 653,Fintech,Singapore,Professional,15,286.4,256.1,41.0,Active
+ACC-0654,Client 654,Healthcare,Germany,Professional,22,319.06,499.0,52.0,Active
+ACC-0655,Client 655,Fintech,United Kingdom,Professional,9,229.1,397.2,35.0,Active
+ACC-0656,Client 656,E-commerce,Singapore,Professional,12,253.05,422.7,63.0,Active
+ACC-0657,Client 657,Healthcare,Australia,Professional,7,204.38,182.1,84.0,Active
+ACC-0658,Client 658,Logistics,Singapore,Starter,1,57.64,20.6,57.0,Churned
+ACC-0659,Client 659,Logistics,Canada,Starter,5,92.21,123.6,54.0,Active
+ACC-0660,Client 660,Logistics,Singapore,Professional,13,253.88,310.7,94.0,Active
+ACC-0661,Client 661,Marketing,United States,Starter,5,94.77,120.6,66.0,Active
+ACC-0662,Client 662,Fintech,Singapore,Professional,16,277.04,598.1,46.0,Active
+ACC-0663,Client 663,Logistics,Canada,Professional,22,347.79,483.2,58.0,Active
+ACC-0664,Client 664,Healthcare,Australia,Professional,10,229.05,257.3,66.0,Active
+ACC-0665,Client 665,Logistics,Germany,Starter,2,67.15,32.7,78.0,Active
+ACC-0666,Client 666,Fintech,United States,Professional,17,284.66,515.9,84.0,Active
+ACC-0667,Client 667,Healthcare,United Kingdom,Starter,3,76.18,76.2,30.0,Active
+ACC-0668,Client 668,Logistics,Australia,Professional,11,239.89,382.4,80.0,Active
+ACC-0669,Client 669,Fintech,Singapore,Professional,12,250.36,388.0,62.0,Active
+ACC-0670,Client 670,Fintech,United Kingdom,Starter,5,92.33,222.2,49.0,Active
+ACC-0671,Client 671,Marketing,Australia,Starter,2,67.04,56.2,80.0,Active
+ACC-0672,Client 672,E-commerce,United Kingdom,Business,94,1184.18,2035.5,66.0,Active
+ACC-0673,Client 673,Logistics,Singapore,Starter,5,91.32,128.0,74.0,Active
+ACC-0674,Client 674,Healthcare,Singapore,Starter,1,58.25,27.1,66.0,Active
+ACC-0675,Client 675,Healthcare,Canada,Business,86,1178.88,1501.9,45.0,Active
+ACC-0676,Client 676,Logistics,Germany,Starter,1,57.42,20.6,75.0,Active
+ACC-0677,Client 677,Fintech,Singapore,Professional,19,316.92,753.2,55.0,Active
+ACC-0678,Client 678,E-commerce,United States,Business,54,815.35,1735.2,42.0,Active
+ACC-0679,Client 679,Edtech,Singapore,Enterprise,486,5541.16,16528.9,20.0,Active
+ACC-0680,Client 680,Marketing,United Kingdom,Professional,15,264.02,655.3,85.0,Active
+ACC-0681,Client 681,Fintech,Australia,Starter,1,57.97,33.5,29.0,Active
+ACC-0682,Client 682,Healthcare,United States,Business,70,1051.27,2424.7,58.0,Active
+ACC-0683,Client 683,Fintech,United States,Starter,3,75.13,89.2,26.0,Active
+ACC-0684,Client 684,Marketing,United States,Professional,12,247.85,213.1,25.0,Active
+ACC-0685,Client 685,E-commerce,Canada,Professional,10,230.61,441.5,68.0,Active
+ACC-0686,Client 686,Healthcare,United States,Starter,2,66.84,85.5,46.0,Active
+ACC-0687,Client 687,Fintech,United Kingdom,Professional,20,330.35,426.6,56.0,Active
+ACC-0688,Client 688,E-commerce,Singapore,Starter,5,95.52,166.0,60.0,Active
+ACC-0689,Client 689,Fintech,United States,Business,78,1026.1,1736.3,30.0,Active
+ACC-0690,Client 690,Fintech,United States,Professional,16,285.64,496.3,24.0,Active
+ACC-0691,Client 691,Logistics,Canada,Professional,14,272.26,300.1,32.0,Active
+ACC-0692,Client 692,Edtech,Australia,Starter,2,66.36,80.5,33.0,Active
+ACC-0693,Client 693,E-commerce,Canada,Starter,3,76.75,96.8,38.0,Active
+ACC-0694,Client 694,E-commerce,United Kingdom,Professional,16,288.07,500.6,89.0,Active
+ACC-0695,Client 695,Marketing,Germany,Enterprise,169,2778.95,3939.2,98.0,Active
+ACC-0696,Client 696,Healthcare,Singapore,Enterprise,476,5017.33,14793.9,82.0,Active
+ACC-0697,Client 697,Logistics,Canada,Starter,4,82.02,113.8,38.0,Active
+ACC-0698,Client 698,Fintech,Australia,Professional,19,301.44,288.6,100.0,Active
+ACC-0699,Client 699,Fintech,United States,Enterprise,454,4782.77,14819.4,48.0,Active
+ACC-0700,Client 700,Edtech,United States,Enterprise,227,3139.72,6898.2,68.0,Active
+ACC-0701,Client 701,E-commerce,Canada,Enterprise,480,5032.67,17213.9,99.0,Active
+ACC-0702,Client 702,E-commerce,Canada,Starter,5,88.0,152.1,60.0,Active
+ACC-0703,Client 703,Fintech,Canada,Professional,11,251.05,464.0,30.0,Active
+ACC-0704,Client 704,Edtech,United Kingdom,Professional,23,345.88,772.9,36.0,Active
+ACC-0705,Client 705,E-commerce,Singapore,Starter,3,75.23,80.8,30.0,Active
+ACC-0706,Client 706,E-commerce,Singapore,Starter,5,87.53,104.0,79.0,Active
+ACC-0707,Client 707,Logistics,United States,Starter,3,75.02,112.2,96.0,Active
+ACC-0708,Client 708,Marketing,United Kingdom,Starter,2,65.15,78.2,29.0,Churned
+ACC-0709,Client 709,Fintech,Australia,Starter,4,85.46,177.5,61.0,Active
+ACC-0710,Client 710,Marketing,Australia,Professional,20,321.46,898.7,81.0,Active
+ACC-0711,Client 711,Fintech,Canada,Business,78,1012.05,2473.7,65.0,Active
+ACC-0712,Client 712,Fintech,United Kingdom,Starter,2,64.74,72.7,39.0,Active
+ACC-0713,Client 713,Fintech,Singapore,Business,51,812.59,2138.6,72.0,Active
+ACC-0714,Client 714,Healthcare,United States,Starter,1,58.25,15.8,61.0,Active
+ACC-0715,Client 715,Edtech,Germany,Business,91,1129.76,1845.2,32.0,Active
+ACC-0716,Client 716,Healthcare,Canada,Starter,4,85.71,99.0,32.0,Active
+ACC-0717,Client 717,Marketing,Canada,Starter,4,82.97,169.3,47.0,Churned
+ACC-0718,Client 718,Fintech,United Kingdom,Enterprise,264,3486.6,9652.8,77.0,Active
+ACC-0719,Client 719,Edtech,United States,Professional,19,315.51,333.5,38.0,Active
+ACC-0720,Client 720,E-commerce,Canada,Professional,23,356.96,458.6,34.0,Active
+ACC-0721,Client 721,Edtech,United States,Professional,10,227.38,352.6,64.0,Active
+ACC-0722,Client 722,Edtech,Germany,Starter,3,74.2,105.9,34.0,Active
+ACC-0723,Client 723,Healthcare,Canada,Business,29,636.18,678.3,47.0,Active
+ACC-0724,Client 724,E-commerce,Canada,Professional,9,226.15,320.5,41.0,Active
+ACC-0725,Client 725,Logistics,United States,Starter,2,67.15,39.9,26.0,Active
+ACC-0726,Client 726,E-commerce,United Kingdom,Professional,5,193.6,111.5,82.0,Active
+ACC-0727,Client 727,Healthcare,Canada,Professional,5,189.79,202.7,82.0,Active
+ACC-0728,Client 728,Logistics,Germany,Starter,3,72.37,79.0,73.0,Active
+ACC-0729,Client 729,Logistics,Australia,Professional,5,187.69,189.6,58.0,Active
+ACC-0730,Client 730,Healthcare,Canada,Business,63,913.34,2634.3,90.0,Active
+ACC-0731,Client 731,Fintech,United Kingdom,Professional,17,303.23,402.0,100.0,Active
+ACC-0732,Client 732,Logistics,United States,Business,35,668.27,1531.7,56.0,Active
+ACC-0733,Client 733,E-commerce,Germany,Professional,8,217.59,182.0,48.0,Active
+ACC-0734,Client 734,Fintech,Singapore,Starter,1,57.67,29.6,52.0,Active
+ACC-0735,Client 735,Fintech,Singapore,Starter,1,57.8,26.6,20.0,Active
+ACC-0736,Client 736,Edtech,United States,Professional,15,269.03,324.4,23.0,Active
+ACC-0737,Client 737,E-commerce,United Kingdom,Starter,2,64.79,60.5,68.0,Active
+ACC-0738,Client 738,Fintech,Germany,Professional,13,259.68,378.4,21.0,Active
+ACC-0739,Client 739,Marketing,Canada,Business,78,1008.98,2541.2,46.0,Active
+ACC-0740,Client 740,Healthcare,Australia,Starter,2,67.37,69.9,57.0,Active
+ACC-0741,Client 741,Marketing,Singapore,Starter,2,64.64,45.8,86.0,Active
+ACC-0742,Client 742,E-commerce,Australia,Starter,2,65.25,48.9,26.0,Active
+ACC-0743,Client 743,Edtech,Germany,Professional,19,318.31,400.4,70.0,Active
+ACC-0744,Client 744,Edtech,United Kingdom,Starter,3,76.76,122.8,50.0,Active
+ACC-0745,Client 745,Healthcare,Australia,Starter,5,94.48,127.7,57.0,Active
+ACC-0746,Client 746,Fintech,Singapore,Professional,22,325.93,610.4,87.0,Active
+ACC-0747,Client 747,Logistics,United Kingdom,Professional,16,286.7,421.8,21.0,Active
+ACC-0748,Client 748,Logistics,Australia,Professional,9,225.27,383.9,57.0,Active
+ACC-0749,Client 749,Fintech,United States,Starter,1,58.16,25.2,38.0,Active
+ACC-0750,Client 750,Logistics,United States,Starter,1,56.97,25.2,99.0,Active
+ACC-0751,Client 751,Healthcare,Singapore,Professional,17,299.04,403.4,24.0,Active
+ACC-0752,Client 752,Edtech,Singapore,Enterprise,206,3069.31,5053.7,96.0,Active
+ACC-0753,Client 753,Edtech,United Kingdom,Professional,19,302.97,476.2,79.0,Active
+ACC-0754,Client 754,E-commerce,Germany,Professional,8,212.19,253.9,65.0,Active
+ACC-0755,Client 755,Marketing,United States,Starter,5,95.19,176.1,72.0,Active
+ACC-0756,Client 756,E-commerce,Germany,Starter,1,58.24,21.9,92.0,Active
+ACC-0757,Client 757,Healthcare,Canada,Starter,2,67.14,49.5,,Active
+ACC-0758,Client 758,Healthcare,Singapore,Professional,5,191.4,159.8,53.0,Active
+ACC-0759,Client 759,Marketing,United Kingdom,Enterprise,220,3004.48,5216.0,30.0,Active
+ACC-0760,Client 760,E-commerce,Singapore,Professional,5,188.73,131.8,80.0,Active
+ACC-0761,Client 761,Healthcare,Australia,Professional,10,240.71,278.6,73.0,Active
+ACC-0762,Client 762,Marketing,United States,Starter,4,84.23,142.8,92.0,Active
+ACC-0763,Client 763,Edtech,Canada,Business,63,911.43,1058.0,37.0,Active
+ACC-0764,Client 764,Marketing,Canada,Enterprise,350,4544.31,8169.3,69.0,Active
+ACC-0765,Client 765,Healthcare,United Kingdom,Starter,1,57.96,42.9,62.0,Active
+ACC-0766,Client 766,Edtech,United States,Starter,3,73.5,94.5,37.0,Churned
+ACC-0767,Client 767,Marketing,Canada,Professional,17,288.02,416.7,77.0,Active
+ACC-0768,Client 768,Fintech,Canada,Starter,4,82.33,178.2,95.0,Active
+ACC-0769,Client 769,Healthcare,United Kingdom,Starter,4,83.72,173.0,88.0,Active
+ACC-0770,Client 770,Edtech,Singapore,Professional,22,328.64,977.8,55.0,Active
+ACC-0771,Client 771,Fintech,Canada,Professional,5,187.69,100.6,90.0,Active
+ACC-0772,Client 772,Healthcare,Germany,Professional,17,301.56,678.4,23.0,Active
+ACC-0773,Client 773,Logistics,Germany,Starter,4,81.84,79.4,23.0,Active
+ACC-0774,Client 774,Logistics,Germany,Starter,1,57.09,36.8,21.0,Active
+ACC-0775,Client 775,Fintech,Germany,Starter,5,92.77,109.2,63.0,Active
+ACC-0776,Client 776,Marketing,Australia,Business,86,1077.35,2374.4,83.0,Active
+ACC-0777,Client 777,E-commerce,Germany,Starter,3,75.13,133.0,86.0,Active
+ACC-0778,Client 778,Marketing,Germany,Starter,2,64.61,65.1,20.0,Active
+ACC-0779,Client 779,Healthcare,Canada,Starter,4,83.16,106.5,48.0,Active
+ACC-0780,Client 780,Fintech,Germany,Business,44,796.72,1730.7,87.0,Active
+ACC-0781,Client 781,Healthcare,Australia,Professional,9,217.87,237.4,97.0,Active
+ACC-0782,Client 782,Marketing,United States,Professional,18,306.15,337.8,90.0,Active
+ACC-0783,Client 783,E-commerce,United States,Professional,11,243.82,493.4,90.0,Active
+ACC-0784,Client 784,Marketing,Singapore,Professional,25,364.28,556.6,96.0,Active
+ACC-0785,Client 785,Marketing,United Kingdom,Professional,25,355.52,502.6,29.0,Active
+ACC-0786,Client 786,Healthcare,Singapore,Business,75,1009.15,1297.7,42.0,Active
+ACC-0787,Client 787,Edtech,Singapore,Starter,3,76.41,106.6,98.0,Active
+ACC-0788,Client 788,Healthcare,Australia,Professional,8,217.21,318.1,28.0,Active
+ACC-0789,Client 789,E-commerce,Singapore,Starter,2,65.19,49.7,32.0,Active
+ACC-0790,Client 790,Healthcare,Germany,Starter,1,56.83,27.3,38.0,Active
+ACC-0791,Client 791,Logistics,Singapore,Starter,1,57.81,44.7,35.0,Active
+ACC-0792,Client 792,Logistics,Germany,Starter,1,57.29,37.6,96.0,Active
+ACC-0793,Client 793,Marketing,United States,Starter,2,66.55,72.6,70.0,Active
+ACC-0794,Client 794,Marketing,Singapore,Starter,1,57.14,20.2,82.0,Active
+ACC-0795,Client 795,Fintech,Germany,Professional,12,241.02,210.9,66.0,Active
+ACC-0796,Client 796,Logistics,Germany,Starter,5,90.83,217.8,80.0,Active
+ACC-0797,Client 797,Healthcare,Singapore,Professional,11,249.77,427.1,63.0,Active
+ACC-0798,Client 798,Fintech,Canada,Professional,14,278.94,408.5,48.0,Active
+ACC-0799,Client 799,Healthcare,United Kingdom,Professional,24,359.66,949.7,89.0,Active
+ACC-0800,Client 800,Edtech,Australia,Starter,5,91.28,90.9,22.0,Active

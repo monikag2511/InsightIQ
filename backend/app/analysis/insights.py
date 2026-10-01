@@ -122,15 +122,22 @@ def generate_dataset_insights(df: pd.DataFrame) -> List[Dict[str, Any]]:
     if len(numeric_cols) >= 2:
         try:
             num_df = df[numeric_cols].apply(pd.to_numeric, errors='coerce')
-            corr = num_df.corr().abs()
-            np.fill_diagonal(corr.values, 0)
-            # Find max correlation
-            max_val = corr.max().max()
-            if not np.isnan(max_val) and max_val > 0.4:
-                # Find column pair
-                pairs = [(i, j) for i in corr.index for j in corr.columns if corr.loc[i, j] == max_val]
-                c1, c2 = pairs[0]
-                raw_corr = round(float(num_df[c1].corr(num_df[c2])), 2)
+            corr = num_df.corr()
+            
+            best_pair = None
+            max_abs_corr = 0.0
+
+            for i in corr.index:
+                for j in corr.columns:
+                    if i < j:
+                        score = corr.loc[i, j]
+                        if not np.isnan(score) and abs(score) > max_abs_corr:
+                            max_abs_corr = abs(score)
+                            best_pair = (i, j, float(score))
+
+            if best_pair and max_abs_corr > 0.4:
+                c1, c2, raw_corr = best_pair
+                raw_corr = round(raw_corr, 2)
                 direction = "positive" if raw_corr > 0 else "negative"
                 insights.append({
                     "id": f"ins-{insight_idx}",

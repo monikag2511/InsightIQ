@@ -40,6 +40,15 @@ def get_active_dataframe(dataset: Dataset) -> pd.DataFrame:
     target_path = dataset.cleaned_file_path if (dataset.cleaned_file_path and os.path.exists(dataset.cleaned_file_path)) else dataset.file_path
     return load_dataset(target_path, dataset.file_type)
 
+def serialize_numpy(obj):
+    if isinstance(obj, (np.integer, int)):
+        return int(obj)
+    elif isinstance(obj, (np.floating, float)):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    return str(obj)
+
 @router.post("/upload", response_model=DatasetResponse)
 async def upload_dataset(
     file: UploadFile = File(...),
@@ -376,7 +385,7 @@ async def ask_dataset_question(
         role="assistant",
         content=computed_res["answer"],
         response_type=computed_res.get("response_type", "text"),
-        payload_json=json.dumps(payload_dict)
+        payload_json=json.dumps(payload_dict, default=serialize_numpy)
     )
     db.add(asst_msg)
     db.commit()

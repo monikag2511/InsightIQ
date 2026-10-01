@@ -50,7 +50,7 @@ def test_auth_registration_and_login():
     assert me_res.status_code == 200
     assert me_res.json()["name"] == "Data Analyst"
 
-def test_demo_dataset_endpoint():
+def test_demo_dataset_endpoint_and_lifecycle():
     res = client.post("/api/datasets/demo")
     assert res.status_code == 200
     ds = res.json()
@@ -59,7 +59,7 @@ def test_demo_dataset_endpoint():
     assert ds["column_count"] == 10
     dataset_id = ds["id"]
 
-    # Preview test
+    # 1. Preview test
     prev_res = client.get(f"/api/datasets/{dataset_id}/preview?page=1&page_size=10")
     assert prev_res.status_code == 200
     pdata = prev_res.json()
@@ -67,7 +67,7 @@ def test_demo_dataset_endpoint():
     assert "Sales" in pdata["columns"]
     assert "Profit" in pdata["columns"]
 
-    # Profile & Quality test
+    # 2. Profile & Quality test
     prof_res = client.get(f"/api/datasets/{dataset_id}/profile")
     assert prof_res.status_code == 200
     prof = prof_res.json()
@@ -75,7 +75,7 @@ def test_demo_dataset_endpoint():
     assert prof["missing_values"] >= 0
     assert len(prof["columns"]) == 10
 
-    # Statistics test
+    # 3. Statistics test
     stats_res = client.get(f"/api/datasets/{dataset_id}/statistics")
     assert stats_res.status_code == 200
     sdata = stats_res.json()
@@ -83,55 +83,77 @@ def test_demo_dataset_endpoint():
     assert "Category" in sdata["categorical"]
     assert "Sales" in sdata["correlation_matrix"]
 
-    # Visualizations test
+    # 4. Visualizations test
     viz_res = client.get(f"/api/datasets/{dataset_id}/visualizations")
     assert viz_res.status_code == 200
     charts = viz_res.json()["charts"]
     assert len(charts) >= 3
 
-    # Insights test
+    # 5. Insights test
     ins_res = client.get(f"/api/datasets/{dataset_id}/insights")
     assert ins_res.status_code == 200
     idata = ins_res.json()
     assert len(idata["insights"]) >= 3
     assert "### Dataset Overview" in idata["ai_summary"]
 
-    # Ask InsightIQ query engine test
-    ask_res = client.post(f"/api/datasets/{dataset_id}/ask", json={
-        "question": "What is the average revenue?"
-    })
-    assert ask_res.status_code == 200
-    adata = ask_res.json()
-    assert adata["kpi"] is not None
-    assert "$" in adata["answer"]
+    # 6. Comprehensive Ask InsightIQ NLP Intents
+    # Intent A: Average
+    q_avg = client.post(f"/api/datasets/{dataset_id}/ask", json={"question": "What is the average revenue?"})
+    assert q_avg.status_code == 200
+    assert q_avg.json()["kpi"] is not None
 
-    # Ask categorical grouping query
-    ask_cat = client.post(f"/api/datasets/{dataset_id}/ask", json={
-        "question": "Which category has the highest sales?"
-    })
-    assert ask_cat.status_code == 200
-    assert ask_cat.json()["chart"] is not None
+    # Intent B: Groupby Category
+    q_group = client.post(f"/api/datasets/{dataset_id}/ask", json={"question": "Which category has the highest sales?"})
+    assert q_group.status_code == 200
+    assert q_group.json()["chart"] is not None
 
-    # Cleaning pipeline test
-    clean_res = client.post(f"/api/datasets/{dataset_id}/clean", json={
-        "auto_clean": True
-    })
+    # Intent C: Top N
+    q_top = client.post(f"/api/datasets/{dataset_id}/ask", json={"question": "Show me the top 5 products by sales"})
+    assert q_top.status_code == 200
+    assert q_top.json()["table"] is not None
+
+    # Intent D: Correlations
+    q_corr = client.post(f"/api/datasets/{dataset_id}/ask", json={"question": "What are the strongest correlations?"})
+    assert q_corr.status_code == 200
+    assert "correlation" in q_corr.json()["executed_intent"]
+
+    # Intent E: Outliers
+    q_outliers = client.post(f"/api/datasets/{dataset_id}/ask", json={"question": "Are there any outliers in this data?"})
+    assert q_outliers.status_code == 200
+
+    # Intent F: Dataset Summary
+    q_summary = client.post(f"/api/datasets/{dataset_id}/ask", json={"question": "Summarize this dataset"})
+    assert q_summary.status_code == 200
+
+    # Intent G: Filter
+    q_filter = client.post(f"/api/datasets/{dataset_id}/ask", json={"question": "Show orders with sales above 1000"})
+    assert q_filter.status_code == 200
+
+    # 7. Conversational History
+    hist_res = client.get(f"/api/datasets/{dataset_id}/history")
+    assert hist_res.status_code == 200
+    assert len(hist_res.json()) >= 1
+
+    # 8. Cleaning pipeline test
+    clean_res = client.post(f"/api/datasets/{dataset_id}/clean", json={"auto_clean": True})
     assert clean_res.status_code == 200
     cdata = clean_res.json()
     assert len(cdata["changes_applied"]) > 0
 
-    # Report generation test
-    rep_res = client.post(f"/api/datasets/{dataset_id}/report", json={
-        "report_name": "Retail Performance Report"
-    })
+    # 9. Report generation test
+    rep_res = client.post(f"/api/datasets/{dataset_id}/report", json={"report_name": "Retail Executive Report"})
     assert rep_res.status_code == 200
     rdata = rep_res.json()
     assert os.path.exists(rdata["file_path"])
 
-    # Export test
+    # 10. Exports test (CSV and Excel)
     exp_csv = client.get(f"/api/datasets/{dataset_id}/export?format=csv")
     assert exp_csv.status_code == 200
     assert exp_csv.headers["content-type"].startswith("text/csv")
+
+    exp_xlsx = client.get(f"/api/datasets/{dataset_id}/export?format=excel")
+    assert exp_xlsx.status_code == 200
+    assert "spreadsheet" in exp_xlsx.headers["content-type"]
 
 def test_file_upload_csv():
     csv_content = b"Product,Price,Quantity\nWidget A,19.99,10\nWidget B,29.99,5\nWidget C,9.99,20\n"
@@ -150,6 +172,25 @@ def test_file_upload_json():
     data = res.json()
     assert data["row_count"] == 2
     assert data["column_count"] == 2
+
+def test_file_upload_excel():
+    # Generate an Excel file buffer with openpyxl
+    df = pd.DataFrame({
+        "Employee": ["Alice", "Bob", "Charlie"],
+        "Department": ["Engineering", "Product", "Sales"],
+        "Salary": [120000, 110000, 95000]
+    })
+    buf = io.BytesIO()
+    df.to_excel(buf, index=False, engine="openpyxl")
+    buf.seek(0)
+
+    files = {"file": ("staff.xlsx", buf.getvalue(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")}
+    res = client.post("/api/datasets/upload", files=files, data={"name": "Staff Directory"})
+    assert res.status_code == 200
+    data = res.json()
+    assert data["row_count"] == 3
+    assert data["column_count"] == 3
+    assert data["file_type"] == "xlsx"
 
 def test_profiler_and_outliers():
     s = pd.Series([10, 12, 11, 13, 12, 11, 14, 12, 100]) # 100 is outlier

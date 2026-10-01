@@ -60,7 +60,23 @@ def match_column(query: str, columns: List[str], preferred_type: Optional[str] =
 
     return None
 
+def sanitize_numpy(obj):
+    if isinstance(obj, dict):
+        return {k: sanitize_numpy(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [sanitize_numpy(v) for v in obj]
+    elif isinstance(obj, (np.integer, int)):
+        return int(obj)
+    elif isinstance(obj, (np.floating, float)):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    return obj
+
 def execute_natural_query(query: str, df: pd.DataFrame) -> Dict[str, Any]:
+    return sanitize_numpy(_execute_natural_query_internal(query, df))
+
+def _execute_natural_query_internal(query: str, df: pd.DataFrame) -> Dict[str, Any]:
     """
     Controlled Natural Language Analysis Engine.
     Interprets intent via deterministic NLP/regex rules, performs safe Pandas operations,
@@ -155,13 +171,11 @@ def execute_natural_query(query: str, df: pd.DataFrame) -> Dict[str, Any]:
         if len(numeric_cols) >= 2:
             num_df = df[numeric_cols].apply(pd.to_numeric, errors='coerce')
             corr = num_df.corr()
-            abs_corr = corr.abs()
-            np.fill_diagonal(abs_corr.values, 0)
             
             pairs = []
-            for i in abs_corr.index:
-                for j in abs_corr.columns:
-                    if i < j: # Avoid duplicate pairs
+            for i in corr.index:
+                for j in corr.columns:
+                    if i < j: # Avoid self-correlation (diagonal) and duplicate pairs
                         score = corr.loc[i, j]
                         if not np.isnan(score):
                             pairs.append({"Metric A": i, "Metric B": j, "Correlation (r)": round(float(score), 3), "Strength": "Strong" if abs(score) > 0.6 else "Moderate" if abs(score) > 0.3 else "Weak"})
