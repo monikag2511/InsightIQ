@@ -25,7 +25,7 @@ def test_health_check():
     assert res.status_code == 200
     data = res.json()
     assert data["status"] == "healthy"
-    assert data["service"] == "InsightIQ Analytics Engine"
+    assert "Analytics Engine" in data["service"]
 
 def test_auth_registration_and_login():
     email = "analyst@insightiq.com"

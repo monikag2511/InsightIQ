@@ -105,7 +105,7 @@ Frontend Displays Response (KPI Metric Cards, Tables, and Charts)
 | **Backend** | Python 3.11 / 3.13, FastAPI, Pandas, NumPy, Scikit-learn, SciPy, OpenPyXL |
 | **Database** | PostgreSQL 16 & SQLAlchemy 2.0 (with SQLite zero-config fallback) |
 | **PDF Reporting** | ReportLab 4.1+ |
-| **AI Gateway** | Controlled Natural Language Parser + Google Gemini / OpenAI REST API integration (with resilient Offline Fallback Engine) |
+| **AI Gateway** | Groq API (`llama-3.3-70b-versatile` / `llama-3.1-8b-instant`) + Controlled Pandas Engine (with zero-dependency Offline Fallback) |
 | **DevOps** | Docker, Docker Compose |
 
 ---
@@ -201,7 +201,8 @@ cp .env.example .env
 ```
 Key variables in `.env`:
 * `DATABASE_URL`: Set to your PostgreSQL connection string, e.g., `postgresql://postgres:password@localhost:5432/askyourdata`. (Leave as SQLite default `sqlite:///./insightiq.db` for instant zero-configuration local runs).
-* `AI_API_KEY`: (Optional) Your Google Gemini or OpenAI API key. If omitted, the system seamlessly operates in **Built-in Deterministic Analysis Engine Mode**.
+* `GROQ_API_KEY`: (Recommended) Your free Groq API key from [https://console.groq.com/keys](https://console.groq.com/keys). Delivers ultra-fast LPU inference via `llama-3.3-70b-versatile`. If omitted, Ask Your Data operates seamlessly in **Built-in Deterministic Analysis Engine Mode**.
+* `GROQ_MODEL`: Groq model ID (default: `llama-3.3-70b-versatile`, or `llama-3.1-8b-instant`).
 * `NEXT_PUBLIC_API_URL`: `http://localhost:8000`
 
 ### Step 3: Backend Setup

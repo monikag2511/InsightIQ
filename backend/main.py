@@ -53,11 +53,15 @@ app.include_router(datasets_router)
 
 @app.get("/api/health", tags=["System"])
 def health_check():
+    ai_provider = "groq" if (os.getenv("GROQ_API_KEY") or (os.getenv("AI_API_KEY") and not os.getenv("AI_API_KEY").startswith("AIza"))) else (
+        "gemini" if (os.getenv("GEMINI_API_KEY") or (os.getenv("AI_API_KEY") and os.getenv("AI_API_KEY").startswith("AIza"))) else "builtin_engine"
+    )
     return {
         "status": "healthy",
-        "service": "InsightIQ Analytics Engine",
+        "service": "Ask Your Data Analytics Engine",
         "version": "1.0.0",
-        "ai_mode": "configured" if os.getenv("AI_API_KEY") or os.getenv("GEMINI_API_KEY") else "builtin_engine"
+        "ai_provider": ai_provider,
+        "ai_mode": "configured" if ai_provider != "builtin_engine" else "builtin_engine"
     }
 
 if __name__ == "__main__":

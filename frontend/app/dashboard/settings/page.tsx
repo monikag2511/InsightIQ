@@ -83,9 +83,9 @@ export default function SettingsPage() {
           <div className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">
             <span className="text-slate-400 font-medium">Natural Language Gateway</span>
             <div className="font-semibold text-slate-900 dark:text-white mt-1">
-              Controlled NLP Intent Pipeline + Fallback Engine
+              Groq API (Llama 3.3 70B) & Controlled Engine
             </div>
-            <p className="text-[11px] text-slate-500 mt-0.5">100% operational offline without external API requirements.</p>
+            <p className="text-[11px] text-slate-500 mt-0.5">High-speed Groq LPU inference with 100% offline deterministic fallback.</p>
           </div>
 
           <div className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">

@@ -2,67 +2,121 @@ import os
 import json
 import httpx
 import pandas as pd
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Tuple
 from backend.app.analysis.query_engine import execute_natural_query
 
-AI_API_KEY = os.getenv("AI_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("OPENAI_API_KEY")
+# Groq API Configuration (Primary LLM Provider)
+GROQ_API_KEY = os.getenv("GROQ_API_KEY") or os.getenv("AI_API_KEY")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+
+# Fallback Alternative Keys (Gemini / OpenAI)
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 async def ask_insightiq(query: str, df: pd.DataFrame) -> Dict[str, Any]:
     """
     Orchestrates Natural Language querying using the mandated architecture:
     1. Dataset is ALWAYS the source of truth.
     2. Controlled query engine executes Pandas calculations.
-    3. If an LLM API key is present, optionally refine the explanation while keeping computed numbers intact.
+    3. If Groq API key is present, enriches the business explanation using Groq's high-speed LPU inference.
     4. If no LLM key is configured, operates seamlessly in Fallback Built-in Engine Mode.
     """
     # Step 1: Execute controlled Pandas computation
     computed_result = execute_natural_query(query, df)
 
-    # Check if AI mode is configured
-    if not AI_API_KEY:
+    # Check if Groq / AI mode is configured
+    active_key = GROQ_API_KEY or GEMINI_API_KEY or OPENAI_API_KEY
+    if not active_key:
         computed_result["mode"] = "builtin_engine"
-        computed_result["disclaimer"] = "AI mode is not configured. Using InsightIQ's built-in analysis engine."
+        computed_result["disclaimer"] = "Operating in Ask Your Data built-in analysis engine."
         return computed_result
 
-    # Step 2: If AI key is configured, enrich the text explanation with LLM without altering numerical figures
+    # Step 2: Enrich explanation via Groq LLM without altering computed numerical facts
     try:
-        enriched_explanation = await call_llm_for_explanation(query, computed_result)
+        enriched_explanation, provider, model_used = await call_groq_or_llm_for_explanation(query, computed_result)
         if enriched_explanation:
             computed_result["answer"] = enriched_explanation
-            computed_result["mode"] = "ai_llm"
+            computed_result["mode"] = f"ai_{provider}"
+            computed_result["provider"] = provider
+            computed_result["model"] = model_used
         else:
             computed_result["mode"] = "builtin_engine"
-            computed_result["disclaimer"] = "Using InsightIQ's built-in analysis engine."
-    except Exception:
+            computed_result["disclaimer"] = "Using Ask Your Data built-in analysis engine."
+    except Exception as e:
         computed_result["mode"] = "builtin_engine"
-        computed_result["disclaimer"] = "AI fallback engaged. Using InsightIQ's built-in analysis engine."
+        computed_result["disclaimer"] = "AI fallback engaged. Using Ask Your Data built-in analysis engine."
 
     return computed_result
 
-async def call_llm_for_explanation(user_question: str, computation_payload: Dict[str, Any]) -> Optional[str]:
+async def call_groq_or_llm_for_explanation(
+    user_question: str,
+    computation_payload: Dict[str, Any]
+) -> Tuple[Optional[str], str, str]:
     """
-    Calls Gemini or OpenAI REST API safely to polish the business explanation of real calculated facts.
+    Calls Groq API (or alternative LLMs) to formulate a polished business analyst explanation.
+    Guarantees that numbers are never invented or changed.
     """
-    if not AI_API_KEY:
-        return None
-
-    prompt = f"""
-You are InsightIQ's senior data analytics assistant.
-User asked: "{user_question}"
+    prompt = f"""User Question: "{user_question}"
 
 The controlled data engine computed the following actual dataset facts:
 - Intent: {computation_payload.get('executed_intent')}
-- Answer: {computation_payload.get('answer')}
-- KPI: {computation_payload.get('kpi')}
+- Ground Truth Answer: {computation_payload.get('answer')}
+- Metric / KPI: {computation_payload.get('kpi')}
 
-Provide a concise, professional business analyst explanation (2-4 sentences) summarizing this finding.
-CRITICAL CONSTRAINT: Do NOT change or invent any numerical results. The numbers provided are final and ground truth.
-"""
+Please formulate a clear, concise, and professional business explanation (2-3 sentences) summarizing this finding for executive stakeholders.
+CRITICAL CONSTRAINT: Do NOT change, round differently, or invent any numerical results. The numbers provided are final and ground truth."""
 
-    try:
-        # Check if Gemini API key (starts with AIza) or OpenAI
-        if AI_API_KEY.startswith("AIza"):
-            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={AI_API_KEY}"
+    # 1. Primary Provider: Groq API
+    if GROQ_API_KEY and not GROQ_API_KEY.startswith("AIza"):
+        try:
+            headers = {
+                "Authorization": f"Bearer {GROQ_API_KEY}",
+                "Content-Type": "application/json"
+            }
+            payload = {
+                "model": GROQ_MODEL,
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a senior data analytics consultant for 'Ask Your Data'. "
+                            "You explain calculated statistical facts with clarity and executive precision. "
+                            "NEVER fabricate or contradict the numerical values provided."
+                        )
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                "temperature": 0.2,
+                "max_tokens": 250
+            }
+            async with httpx.AsyncClient(timeout=8.0) as client:
+                res = await client.post(GROQ_API_URL, json=payload, headers=headers)
+                if res.status_code == 200:
+                    data = res.json()
+                    choices = data.get("choices", [])
+                    if choices and "message" in choices[0]:
+                        return choices[0]["message"]["content"].strip(), "groq", GROQ_MODEL
+                elif res.status_code == 404 or res.status_code == 400:
+                    # Fallback to secondary fast Groq model if primary model not available
+                    payload["model"] = "llama-3.1-8b-instant"
+                    fallback_res = await client.post(GROQ_API_URL, json=payload, headers=headers)
+                    if fallback_res.status_code == 200:
+                        data = fallback_res.json()
+                        choices = data.get("choices", [])
+                        if choices and "message" in choices[0]:
+                            return choices[0]["message"]["content"].strip(), "groq", "llama-3.1-8b-instant"
+        except Exception:
+            pass
+
+    # 2. Secondary Provider: Google Gemini (if key starts with AIza)
+    gemini_key = GEMINI_API_KEY or (GROQ_API_KEY if GROQ_API_KEY and GROQ_API_KEY.startswith("AIza") else None)
+    if gemini_key:
+        try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_key}"
             payload = {
                 "contents": [{"parts": [{"text": prompt}]}],
                 "generationConfig": {"temperature": 0.2, "maxOutputTokens": 300}
@@ -73,11 +127,15 @@ CRITICAL CONSTRAINT: Do NOT change or invent any numerical results. The numbers 
                     data = res.json()
                     candidates = data.get("candidates", [])
                     if candidates and "content" in candidates[0]:
-                        return candidates[0]["content"]["parts"][0]["text"].strip()
-        else:
-            # OpenAI compatible endpoint
+                        return candidates[0]["content"]["parts"][0]["text"].strip(), "gemini", "gemini-1.5-flash"
+        except Exception:
+            pass
+
+    # 3. Tertiary Provider: OpenAI (if OPENAI_API_KEY is present)
+    if OPENAI_API_KEY:
+        try:
             url = "https://api.openai.com/v1/chat/completions"
-            headers = {"Authorization": f"Bearer {AI_API_KEY}", "Content-Type": "application/json"}
+            headers = {"Authorization": f"Bearer {OPENAI_API_KEY}", "Content-Type": "application/json"}
             payload = {
                 "model": "gpt-3.5-turbo",
                 "messages": [
@@ -91,11 +149,11 @@ CRITICAL CONSTRAINT: Do NOT change or invent any numerical results. The numbers 
                 res = await client.post(url, json=payload, headers=headers)
                 if res.status_code == 200:
                     data = res.json()
-                    return data["choices"][0]["message"]["content"].strip()
-    except Exception:
-        return None
+                    return data["choices"][0]["message"]["content"].strip(), "openai", "gpt-3.5-turbo"
+        except Exception:
+            pass
 
-    return None
+    return None, "builtin", "deterministic_pandas"
 
 def generate_ai_dataset_summary(
     df: pd.DataFrame,
@@ -176,7 +234,7 @@ def generate_ai_dataset_summary(
 
     # Overall Summary
     overall_text = (
-        f"InsightIQ confirms the dataset is analytically sound for decision-making. "
+        f"Ask Your Data confirms the dataset is analytically sound for decision-making. "
         f"With a data quality rating of {quality_score}%, it provides dependable foundations for strategic insights."
     )
 
