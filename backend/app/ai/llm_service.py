@@ -119,38 +119,47 @@ async def call_groq_or_llm_for_explanation(
                 pass
         cat_summary_str = "; ".join(cat_samples) if cat_samples else "None"
 
-        prompt = f"""You are the senior AI Data Analyst for the 'Ask Your Data' analytics platform.
-The user uploaded a dataset with {len(df):,} records across {len(columns)} columns: {', '.join(columns)}.
-Numeric Metrics: {num_summary_str}
-Categorical Attributes: {cat_summary_str}
+        prompt = f"""Dataset overview: {len(df):,} records with columns: {', '.join(columns)}.
+Key Metrics: {num_summary_str}
 
-User Question / Message: "{user_question}"
+User Message: "{user_question}"
 
-INSTRUCTIONS:
-1. If the message is off-topic, greeting, slang, joke, or casual chat (e.g. "chapprii", "hello", "hi", "who are you", "what can you do"):
-   - Respond warmly, politely, and with a light touch of wit as their dedicated AI Data Analyst.
-   - Clarify clearly that this input does not correspond to any data metric or column in this dataset.
-   - Suggest 3 concrete, interesting analytical questions they can ask based on their actual columns ({sample_cols}).
-   - DO NOT fabricate fake numbers or random averages.
+OUTPUT FORMAT RULES (STRICT):
+1. Keep the entire response neat, concise, and point-to-point (under 100 words total).
+2. Start with 1 friendly, professional opening line (e.g. greeting or clarifying what to analyze).
+3. Provide exactly 3 short, high-value, 1-line question suggestions using actual dataset columns (e.g. {sample_cols}).
+   Format:
+   - Question 1?
+   - Question 2?
+   - Question 3?
+4. Do NOT dump or list all column names vertically.
+5. Do NOT write multi-line paragraphs or explanations under each bullet.
+6. Complete all sentences fully. Never stop mid-thought."""
 
-2. If the user is asking an analytical, business, or conceptual question about this dataset:
-   - Provide an insightful, professional, executive-level response using the dataset context and domain knowledge.
-   - Guide them on which specific columns or aggregations to explore."""
-        system_content = "You are a professional, sharp, and helpful AI Data Analyst for 'Ask Your Data'. You understand user intent precisely and never provide fake or irrelevant calculations."
+        system_content = (
+            "You are a sharp, executive AI Data Analyst for 'Ask Your Data'. "
+            "You deliver crisp, neat, point-to-point responses. "
+            "Never produce long walls of text, never list raw columns vertically, and never leave a sentence unfinished."
+        )
     else:
         prompt = f"""User Question: "{user_question}"
 
-The controlled data engine computed the following actual dataset facts:
-- Intent: {computation_payload.get('executed_intent')}
+Actual Computed Dataset Facts:
 - Ground Truth Answer: {computation_payload.get('answer')}
 - Metric / KPI: {computation_payload.get('kpi')}
+- Intent: {computation_payload.get('executed_intent')}
 
-Please formulate a clear, concise, and professional business explanation (2-3 sentences) summarizing this finding for executive stakeholders.
-CRITICAL CONSTRAINT: Do NOT change, round differently, or invent any numerical results. The numbers provided are final and ground truth."""
+OUTPUT FORMAT RULES (STRICT):
+1. Give a crisp, executive, point-to-point summary (1 to 2 direct sentences max).
+2. State the key finding and exact number directly upfront.
+3. CRITICAL: Never alter, round differently, or contradict the Ground Truth Answer.
+4. Keep it neat, professional, and finish every sentence completely."""
+
         system_content = (
             "You are a senior data analytics consultant for 'Ask Your Data'. "
-            "You explain calculated statistical facts with clarity and executive precision. "
-            "NEVER fabricate or contradict the numerical values provided."
+            "You deliver neat, short, point-to-point executive answers. "
+            "State findings directly in 1-2 concise sentences. "
+            "NEVER alter or fabricate numerical values provided in the ground truth."
         )
 
     last_error: Optional[str] = None
@@ -189,7 +198,7 @@ CRITICAL CONSTRAINT: Do NOT change, round differently, or invent any numerical r
                         }
                     ],
                     "temperature": 0.3 if is_unmatched else 0.2,
-                    "max_tokens": 300
+                    "max_tokens": 650
                 }
                 try:
                     res = await client.post(GROQ_API_URL, json=payload, headers=headers)
@@ -223,7 +232,7 @@ CRITICAL CONSTRAINT: Do NOT change, round differently, or invent any numerical r
             url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={effective_gemini}"
             payload = {
                 "contents": [{"parts": [{"text": prompt}]}],
-                "generationConfig": {"temperature": 0.2, "maxOutputTokens": 300}
+                "generationConfig": {"temperature": 0.2, "maxOutputTokens": 650}
             }
             async with httpx.AsyncClient(timeout=8.0) as client:
                 res = await client.post(url, json=payload)
@@ -249,7 +258,7 @@ CRITICAL CONSTRAINT: Do NOT change, round differently, or invent any numerical r
                     {"role": "user", "content": prompt}
                 ],
                 "temperature": 0.2,
-                "max_tokens": 250
+                "max_tokens": 650
             }
             async with httpx.AsyncClient(timeout=8.0) as client:
                 res = await client.post(url, json=payload, headers=headers)
