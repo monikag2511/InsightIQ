@@ -1,8 +1,17 @@
 import os
+import sys
+from pathlib import Path
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
+
+# Ensure project root and backend directory are in sys.path
+BASE_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = BASE_DIR.parent
+for p in [str(PROJECT_ROOT), str(BASE_DIR)]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
 
 load_dotenv()
 
@@ -21,17 +30,23 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# CORS Configuration
-origins = [
+# Production CORS Configuration (Supports local, custom domain, and all Vercel domains)
+frontend_env = os.getenv("FRONTEND_URL", "").strip()
+allowed_origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:3001",
-    "*"
 ]
+if frontend_env:
+    for u in frontend_env.split(","):
+        clean_u = u.strip().rstrip("/")
+        if clean_u and clean_u not in allowed_origins:
+            allowed_origins.append(clean_u)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=allowed_origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",  # Matches all Vercel production & preview deployments
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -126,4 +141,5 @@ async def ai_status_diagnostic():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run("backend.main:app", host="0.0.0.0", port=port, reload=False)
