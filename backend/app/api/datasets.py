@@ -38,6 +38,27 @@ os.makedirs(REPORTS_DIR, exist_ok=True)
 def get_active_dataframe(dataset: Dataset) -> pd.DataFrame:
     """Helper to load either the cleaned file or original file for a dataset."""
     target_path = dataset.cleaned_file_path if (dataset.cleaned_file_path and os.path.exists(dataset.cleaned_file_path)) else dataset.file_path
+    
+    # Auto-heal missing demo/sales/retail datasets if server container restarted on ephemeral storage
+    if not target_path or not os.path.exists(target_path):
+        is_demo = (
+            (target_path and ("demo" in target_path.lower() or "retail" in target_path.lower() or "sales" in target_path.lower())) or
+            (dataset.name and any(k in dataset.name.lower() for k in ["demo", "retail", "sales", "saas", "workforce", "insightiq"])) or
+            (dataset.file_name and any(k in dataset.file_name.lower() for k in ["demo", "retail", "sales", "sample"]))
+        )
+        if is_demo and target_path:
+            try:
+                os.makedirs(os.path.dirname(target_path), exist_ok=True)
+                from backend.app.utils.demo_generator import generate_demo_dataset
+                generate_demo_dataset(1200, target_path)
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=f"Failed to auto-generate demo data: {str(e)}")
+        else:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Dataset file '{dataset.file_name or dataset.name}' not found on server storage (ephemeral container restart). Please re-upload your file or select a Demo dataset."
+            )
+
     return load_dataset(target_path, dataset.file_type)
 
 def serialize_numpy(obj):

@@ -74,6 +74,24 @@ def seed_initial_data():
             db.add(profile_record)
             db.commit()
             print(f"Auto-seed: Initialized demo dataset '{ds.name}' ({len(df)} rows)")
+        else:
+            # Auto-heal any existing datasets whose files were wiped by ephemeral container restarts
+            for existing_ds in db.query(Dataset).all():
+                target = existing_ds.file_path
+                if target and not os.path.exists(target):
+                    is_demo = (
+                        "demo" in target.lower() or
+                        "retail" in str(existing_ds.name).lower() or
+                        "sales" in str(existing_ds.name).lower() or
+                        "insightiq" in target.lower()
+                    )
+                    if is_demo:
+                        try:
+                            os.makedirs(os.path.dirname(target), exist_ok=True)
+                            generate_demo_dataset(1200, target)
+                            print(f"Auto-heal: Restored missing dataset file for '{existing_ds.name}' at {target}")
+                        except Exception as e:
+                            print(f"Auto-heal notice for {target}: {e}")
     except Exception as e:
         print(f"Auto-seed non-fatal notice: {e}")
     finally:

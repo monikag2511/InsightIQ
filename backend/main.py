@@ -32,12 +32,15 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
+import re
+
 # Production CORS Configuration (Supports local, custom domain, and all Vercel domains)
 frontend_env = os.getenv("FRONTEND_URL", "").strip()
 allowed_origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:3001",
+    "https://insight-iq-mauve.vercel.app",
 ]
 if frontend_env:
     for u in frontend_env.split(","):
@@ -54,14 +57,46 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Robust CORS & Error Middleware: guarantees Access-Control-Allow-Origin on all responses including 4xx/500
+@app.middleware("http")
+async def ensure_cors_and_error_handling(request: Request, call_next):
+    origin = request.headers.get("origin")
+    try:
+        response = await call_next(request)
+    except Exception as exc:
+        response = JSONResponse(
+            status_code=500,
+            content={"detail": f"An error occurred while processing your request: {str(exc)}"}
+        )
+    if origin:
+        is_allowed = (
+            origin in allowed_origins or
+            re.match(r"^https://.*\.vercel\.app$", origin) is not None or
+            origin.startswith("http://localhost:") or
+            origin.startswith("http://127.0.0.1:")
+        )
+        if is_allowed:
+            response.headers["Access-Control-Allow-Origin"] = origin
+            response.headers["Access-Control-Allow-Credentials"] = "true"
+            response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS, PATCH, HEAD"
+            response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With, Accept"
+    return response
+
 # Global Exception Handler
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    # Log internal error without exposing sensitive internals
     error_msg = str(exc)
+    origin = request.headers.get("origin")
+    headers = {}
+    if origin:
+        headers["Access-Control-Allow-Origin"] = origin
+        headers["Access-Control-Allow-Credentials"] = "true"
+        headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS, PATCH, HEAD"
+        headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization, X-Requested-With, Accept"
     return JSONResponse(
         status_code=500,
-        content={"detail": f"An error occurred while processing your request: {error_msg}"}
+        content={"detail": f"An error occurred while processing your request: {error_msg}"},
+        headers=headers
     )
 
 from backend.app.ai.llm_service import get_ai_config

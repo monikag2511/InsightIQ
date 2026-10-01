@@ -17,3 +17,5 @@ services:
         value: openai/gpt-oss-120b
       - key: DATABASE_URL
         sync: false # Paste your Neon PostgreSQL connection string here
+      - key: FRONTEND_URL
+        value: https://insight-iq-mauve.vercel.app
