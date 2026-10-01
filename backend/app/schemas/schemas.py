@@ -198,7 +198,11 @@ class AskResponse(BaseModel):
     conversation_id: int
     message_id: int
     executed_intent: str
-    mode: str # 'ai_llm' or 'builtin_engine'
+    mode: str # 'ai_groq', 'ai_gemini', 'builtin_engine'
+    provider: Optional[str] = None
+    model: Optional[str] = None
+    ai_error: Optional[str] = None
+    disclaimer: Optional[str] = None
 
 class MessageResponse(BaseModel):
     id: int

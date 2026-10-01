@@ -52,7 +52,12 @@ export default function AskYourDataPage() {
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState<ConversationHistory[]>([]);
   const [activeConvId, setActiveConvId] = useState<number | undefined>(undefined);
+  const [aiStatus, setAiStatus] = useState<any>(null);
   const chatBottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    api.getAiStatus().then(setAiStatus).catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (currentDataset?.id) {
@@ -126,6 +131,10 @@ export default function AskYourDataPage() {
           table: res.table,
           chart: res.chart,
           executed_intent: res.executed_intent,
+          provider: res.provider,
+          model: res.model,
+          ai_error: res.ai_error,
+          disclaimer: res.disclaimer,
         },
         mode: res.mode,
       };
@@ -260,10 +269,22 @@ export default function AskYourDataPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 px-2.5 py-1 text-[11px] font-medium text-blue-700 dark:text-blue-300">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Controlled Pandas Engine
-            </span>
+            {aiStatus?.is_valid && aiStatus?.provider === 'groq' ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 px-3 py-1 text-[11px] font-medium text-cyan-700 dark:text-cyan-300">
+                <Sparkles className="h-3.5 w-3.5 text-cyan-500 animate-pulse" />
+                <span>Groq AI Active ({aiStatus.model || 'openai/gpt-oss-120b'})</span>
+              </span>
+            ) : aiStatus?.configured && !aiStatus?.is_valid ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 px-3 py-1 text-[11px] font-medium text-amber-700 dark:text-amber-300" title={aiStatus?.status}>
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                <span>Groq Key Error (Fallback Mode)</span>
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 px-2.5 py-1 text-[11px] font-medium text-blue-700 dark:text-blue-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Controlled Pandas Engine
+              </span>
+            )}
           </div>
         </div>
 
@@ -319,14 +340,24 @@ export default function AskYourDataPage() {
                   }`}
                 >
                   {/* Mode / Fallback Indicator */}
-                  {msg.role === 'assistant' && msg.mode && (
-                    <div className="text-[10px] text-slate-400 flex items-center gap-1.5 pb-1 border-b border-slate-100 dark:border-slate-800">
-                      <Sparkles className="h-3 w-3 text-cyan-500" />
-                      <span>
-                        {msg.mode === 'ai_llm'
-                          ? 'AI Mode active'
-                          : 'Ask Your Data built-in analysis engine'}
-                      </span>
+                  {msg.role === 'assistant' && (
+                    <div className="flex items-center justify-between text-[10px] pb-1.5 border-b border-slate-100 dark:border-slate-800">
+                      {msg.mode?.startsWith('ai_') ? (
+                        <span className="text-cyan-600 dark:text-cyan-400 font-semibold flex items-center gap-1.5">
+                          <Sparkles className="h-3 w-3 text-cyan-500" />
+                          <span>AI Explanation ({msg.payload?.provider ? msg.payload.provider.toUpperCase() : 'GROQ'} • {msg.payload?.model || 'openai/gpt-oss-120b'})</span>
+                        </span>
+                      ) : (
+                        <span className="text-slate-400 flex items-center gap-1.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                          <span>Ask Your Data built-in analysis engine</span>
+                        </span>
+                      )}
+                      {msg.payload?.ai_error && (
+                        <span className="text-[9px] text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-md border border-amber-200 dark:border-amber-900/60" title={msg.payload.ai_error}>
+                          ⚠️ AI Fallback
+                        </span>
+                      )}
                     </div>
                   )}
 

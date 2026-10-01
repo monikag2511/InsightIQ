@@ -14,8 +14,11 @@ def infer_column_type(series: pd.Series) -> str:
 
     # Check for numerical
     if pd.api.types.is_numeric_dtype(series):
-        # If low cardinality integers, check if it behaves as categorical
-        if series.nunique(dropna=True) <= 5 and series.dtype in ['int64', 'int32']:
+        name_lower = str(series.name).lower() if series.name else ""
+        numeric_keywords = ["price", "sales", "revenue", "profit", "cost", "amount", "qty", "quantity", "val", "rate", "discount", "total", "margin"]
+        if any(k in name_lower for k in numeric_keywords):
+            return "numerical"
+        if len(series.dropna()) > 20 and series.nunique(dropna=True) <= 5 and series.dtype in ['int64', 'int32']:
             return "categorical"
         return "numerical"
 

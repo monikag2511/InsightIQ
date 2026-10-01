@@ -164,6 +164,10 @@ export interface AskResponse {
   message_id: number;
   executed_intent: string;
   mode: string;
+  provider?: string | null;
+  model?: string | null;
+  ai_error?: string | null;
+  disclaimer?: string | null;
 }
 
 export interface ConversationMessage {

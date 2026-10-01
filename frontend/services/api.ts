@@ -182,4 +182,9 @@ export const api = {
   getExportUrl(id: number, format: 'csv' | 'excel' = 'csv') {
     return `${API_BASE_URL}/api/datasets/${id}/export?format=${format}`;
   },
+
+  // AI Diagnostic
+  async getAiStatus() {
+    return request<any>('/api/system/ai-status');
+  },
 };

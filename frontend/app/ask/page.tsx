@@ -65,7 +65,12 @@ export default function AskYourDataDedicatedPage() {
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState<ConversationHistory[]>([]);
   const [activeConvId, setActiveConvId] = useState<number | undefined>(undefined);
+  const [aiStatus, setAiStatus] = useState<any>(null);
   const chatBottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    api.getAiStatus().then(setAiStatus).catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (currentDataset?.id) {
@@ -137,7 +142,11 @@ export default function AskYourDataDedicatedPage() {
           kpi: res.kpi,
           table: res.table,
           chart: res.chart,
-          executed_intent: res.executed_intent
+          executed_intent: res.executed_intent,
+          provider: res.provider,
+          model: res.model,
+          ai_error: res.ai_error,
+          disclaimer: res.disclaimer
         },
         mode: res.mode,
         created_at: new Date().toISOString()
@@ -385,6 +394,34 @@ export default function AskYourDataDedicatedPage() {
 
           {/* RIGHT SIDE: Dedicated AI Chat Interface (8 Cols) */}
           <div className="lg:col-span-8 glass-panel p-4 md:p-6 flex flex-col justify-between h-[calc(100vh-10rem)] min-h-[580px]">
+            {/* Top Bar with AI engine status */}
+            <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200 dark:border-slate-800">
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-blue-500" />
+                <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">
+                  Analytical Chat & AI Synthesizer
+                </span>
+              </div>
+              <div>
+                {aiStatus?.is_valid && aiStatus?.provider === 'groq' ? (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800/60 px-3 py-1 text-[11px] font-medium text-cyan-700 dark:text-cyan-300">
+                    <Sparkles className="h-3 w-3 text-cyan-500 animate-pulse" />
+                    <span>Groq AI Active ({aiStatus.model || 'openai/gpt-oss-120b'})</span>
+                  </span>
+                ) : aiStatus?.configured && !aiStatus?.is_valid ? (
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 px-3 py-1 text-[11px] font-medium text-amber-700 dark:text-amber-300" title={aiStatus?.status}>
+                    <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                    <span>Groq Key Error (Fallback Mode)</span>
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 px-2.5 py-1 text-[11px] font-medium text-blue-700 dark:text-blue-300">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Controlled Pandas Engine
+                  </span>
+                )}
+              </div>
+            </div>
+
             {/* Chat Messages Stream */}
             <div className="flex-1 overflow-y-auto space-y-4 pr-1 mb-4">
               {messages.length === 0 ? (
@@ -441,6 +478,28 @@ export default function AskYourDataDedicatedPage() {
                           : 'border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-bl-xs'
                       }`}
                     >
+                      {/* Mode / Fallback Indicator */}
+                      {m.role === 'assistant' && (
+                        <div className="flex items-center justify-between text-[10px] pb-1.5 mb-2.5 border-b border-slate-100 dark:border-slate-800">
+                          {m.mode?.startsWith('ai_') ? (
+                            <span className="text-cyan-600 dark:text-cyan-400 font-semibold flex items-center gap-1.5">
+                              <Sparkles className="h-3 w-3 text-cyan-500" />
+                              <span>AI Explanation ({m.payload?.provider ? m.payload.provider.toUpperCase() : 'GROQ'} • {m.payload?.model || 'openai/gpt-oss-120b'})</span>
+                            </span>
+                          ) : (
+                            <span className="text-slate-400 flex items-center gap-1.5">
+                              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                              <span>Ask Your Data built-in analysis engine</span>
+                            </span>
+                          )}
+                          {m.payload?.ai_error && (
+                            <span className="text-[9px] text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-md border border-amber-200 dark:border-amber-900/60" title={m.payload.ai_error}>
+                              ⚠️ AI Fallback
+                            </span>
+                          )}
+                        </div>
+                      )}
+
                       {/* Main Text Content */}
                       <div className="text-xs leading-relaxed whitespace-pre-wrap font-normal">
                         {m.content}

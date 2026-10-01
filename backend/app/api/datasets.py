@@ -399,7 +399,11 @@ async def ask_dataset_question(
         "table": computed_res.get("table"),
         "chart": computed_res.get("chart"),
         "executed_intent": computed_res.get("executed_intent"),
-        "mode": computed_res.get("mode")
+        "mode": computed_res.get("mode"),
+        "provider": computed_res.get("provider"),
+        "model": computed_res.get("model"),
+        "ai_error": computed_res.get("ai_error"),
+        "disclaimer": computed_res.get("disclaimer")
     }
 
     # Save assistant message
@@ -423,7 +427,11 @@ async def ask_dataset_question(
         "conversation_id": conv.id,
         "message_id": asst_msg.id,
         "executed_intent": computed_res.get("executed_intent", "custom"),
-        "mode": computed_res.get("mode", "builtin_engine")
+        "mode": computed_res.get("mode", "builtin_engine"),
+        "provider": computed_res.get("provider"),
+        "model": computed_res.get("model"),
+        "ai_error": computed_res.get("ai_error"),
+        "disclaimer": computed_res.get("disclaimer")
     }
 
 @router.get("/{dataset_id}/history", response_model=List[ConversationHistoryResponse])
